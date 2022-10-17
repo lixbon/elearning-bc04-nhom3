@@ -6,6 +6,7 @@ import BaseLayout from "./HOC/BaseLayout";
 import SecureView from "./HOC/SecureView";
 import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
 import HomePage from "./Pages/HomePage/HomePage";
+import "antd/dist/antd.min.css";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
