@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { useLayoutEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
+import Loading from "./Components/Loading/Loading";
+import BaseLayout from "./HOC/BaseLayout";
+import SecureView from "./HOC/SecureView";
+import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
+import HomePage from "./Pages/HomePage/HomePage";
+
+const Wrapper = ({ children }) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children;
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Loading />
+      <BrowserRouter>
+        <Wrapper>
+          <Routes>
+            {/* Start Quan */}
+            <Route path="/" element={<BaseLayout Component={HomePage} />} />
+            <Route
+              path="/checkout"
+              element={
+                <SecureView>
+                  <BaseLayout Component={CheckOutPage} />
+                </SecureView>
+              }
+            />
+            {/* End Quan */}
+
+            {/* Start Hong Anh */}
+
+            {/* End Hong Anh */}
+
+            {/* Start Quang */}
+
+            {/* End Quang */}
+          </Routes>
+        </Wrapper>
+      </BrowserRouter>
     </div>
   );
 }
