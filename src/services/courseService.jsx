@@ -17,4 +17,8 @@ export const courseServ = {
     let uri = `/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${courseid}`;
     return https.get(uri);
   },
+  postCourseRegister: (data) => {
+    let uri = "/api/QuanLyKhoaHoc/DangKyKhoaHoc";
+    return https.post(uri, data);
+  },
 };

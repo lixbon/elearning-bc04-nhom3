@@ -9,6 +9,8 @@ import HomePage from "./Pages/HomePage/HomePage";
 import "antd/dist/antd.min.css";
 import CategoryPage from "./Pages/CategoryPage/CategoryPage";
 import CourseDetailPage from "./Pages/CourseDetailPage/CourseDetailPage";
+import WatchListPage from "./Pages/WatchListPage/WatchListPage";
+import MyStudyingPage from "./Pages/MyStudyingPage/MyStudyingPage";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -34,6 +36,14 @@ function App() {
             <Route
               path="/detail/:courseid"
               element={<BaseLayout Component={CourseDetailPage} />}
+            />
+            <Route
+              path="/watchlist"
+              element={<BaseLayout Component={WatchListPage} />}
+            />
+            <Route
+              path="/studying"
+              element={<BaseLayout Component={MyStudyingPage} />}
             />
 
             <Route

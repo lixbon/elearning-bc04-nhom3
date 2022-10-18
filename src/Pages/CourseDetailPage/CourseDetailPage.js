@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import Style from "./coursedetailpage.module.css";
-import { Rate } from "antd";
+import { message, Rate } from "antd";
 import Button from "../../Components/Button/Button";
-import { addToCart } from "../../redux/slice/cartSlice";
+import { addToWatchlist } from "../../redux/slice/watchlistSlice";
+import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
+import { courseRegisterAction } from "../../redux/action/courseAction";
 
 export default function CourseDetailPage() {
   const [courseDetail, setcourseDetail] = useState({});
@@ -20,15 +22,26 @@ export default function CourseDetailPage() {
       .then((res) => {
         dispatch(setLoadingOFF());
         setcourseDetail(res.data);
-        console.log(res);
       })
       .catch((err) => {
         dispatch(setLoadingOFF());
         console.log(err);
       });
   }, []);
-  const handleAddCourseToCart = (course) => {
-    dispatch(addToCart(course));
+  const handleAddCourseToWatchlist = (course) => {
+    dispatch(addToWatchlist(course));
+  };
+  const CourseRegister = () => {
+    const registerInfo = new CourseRegisterInfo();
+    registerInfo.maKhoaHoc = courseid;
+    registerInfo.taiKhoan = "string";
+    let onSuccess = (notifications) => {
+      message.success(notifications);
+    };
+    let onFail = (reason) => {
+      message.error(reason);
+    };
+    dispatch(courseRegisterAction(registerInfo, onSuccess, onFail));
   };
   const {
     biDanh,
@@ -60,22 +73,27 @@ export default function CourseDetailPage() {
                 Views: <span className="text-yellow-400">{luotXem}</span>
               </h2>
               <div className="flex space-x-4">
-                <Button className="text-white bg-slate-600 hover:bg-blue-500">
-                  buy now
+                <Button
+                  className="text-white bg-slate-600 hover:bg-red-500"
+                  onClick={CourseRegister}
+                >
+                  register now
                 </Button>
                 <Button
-                  className="text-white hover:bg-red-400"
+                  className="text-white bg-blue-500 hover:bg-red-500"
                   onClick={() => {
-                    handleAddCourseToCart(courseDetail);
+                    handleAddCourseToWatchlist(courseDetail);
                   }}
                 >
-                  add to cart
+                  add to watchlist
                 </Button>
               </div>
             </div>
           </div>
-          <div className="w-5/12 flex items-center justify-center">
-            <img src={hinhAnh} alt="" className="rounded-lg w-2/3" />
+          <div className="w-5/12 flex items-center justify-center p-4">
+            <div className="border border-white shadow-lg shadow-white rounded-2xl overflow-hidden w-full bg-[#0000001a]">
+              <img src={hinhAnh} alt="" className="w-full" />
+            </div>
           </div>
         </div>
       </div>

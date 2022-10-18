@@ -11,7 +11,9 @@ export default function HeaderMobile() {
     <div className="flex justify-between items-center w-full">
       <div className="flex items-center">
         <img src={cybershoplogo} alt="" className="w-16" />
-        <h2 className="uppercase text-xl font-semibold mb-0">cybersoft</h2>
+        <h2 className="uppercase text-xl font-semibold mb-0 text-white">
+          cybersoft
+        </h2>
       </div>
       <div>
         {nav ? (
@@ -31,13 +33,13 @@ export default function HeaderMobile() {
       {nav ? (
         <div
           onClick={handlesetNav}
-          className="bg-overlay h-screen w-screen absolute top-20 -right-12"
+          className="bg-overlay h-screen w-screen absolute top-20 -right-12 z-10"
         ></div>
       ) : (
         ""
       )}
       {nav ? (
-        <div className="w-1/2 h-screen bg-white absolute top-20 -right-12 z-10"></div>
+        <div className="w-1/2 h-screen bg-white absolute top-20 -right-12 z-20"></div>
       ) : (
         ""
       )}

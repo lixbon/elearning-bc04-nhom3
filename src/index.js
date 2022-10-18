@@ -6,13 +6,13 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import loadingSlice from "./redux/slice/loadingSlice";
 import userSlice from "./redux/slice/userSlice";
-import cartSlice from "./redux/slice/cartSlice";
+import watchlistSlice from "./redux/slice/watchlistSlice";
 
 const store = configureStore({
   reducer: {
     loadingSlice,
     userSlice,
-    cartSlice,
+    watchlistSlice,
   },
   devTools: true,
 });

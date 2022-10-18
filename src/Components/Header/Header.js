@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cybershoplogo from "../../assets/img/cyberlogo.png";
 import { FaBars } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { TfiBag } from "react-icons/tfi";
 
 import UserNav from "./UserNav";
 import { Input } from "antd";
@@ -13,8 +13,8 @@ const { Search } = Input;
 
 export default function Header() {
   const [headerStyle, setHeaderStyle] = useState(false);
-  let countItemInCart = useSelector((state) => {
-    return state.cartSlice.cart.length;
+  let countItemInWatchList = useSelector((state) => {
+    return state.watchlistSlice.watchlist.length;
   });
   let navigate = useNavigate();
   const changeHeaderStyle = () => {
@@ -26,6 +26,12 @@ export default function Header() {
   };
   const goHomePage = () => {
     navigate("/");
+  };
+  const goWatchlistPage = () => {
+    navigate("/watchlist");
+  };
+  const goStudyingPage = () => {
+    navigate("/studying");
   };
   window.addEventListener("scroll", changeHeaderStyle);
   const onSearch = (value) => console.log(value);
@@ -64,14 +70,20 @@ export default function Header() {
           </div>
         </div>
         <div className="flex justify-end items-center w-1/3 space-x-2">
-          <h3 className="text-xl mb-0 text-white">My Learning</h3>
+          <h3
+            onClick={goStudyingPage}
+            className="text-xl mb-0 text-white cursor-pointer hover:text-red-500  duration-200"
+          >
+            My Learning
+          </h3>
           <div className="relative">
-            <AiOutlineShoppingCart
+            <TfiBag
               size={30}
               className="cursor-pointer text-white hover:text-green-400"
+              onClick={goWatchlistPage}
             />
             <div className="absolute -top-3 -right-2 text-sm w-5 h-5 rounded-full bg-red-500 text-white  border border-white flex justify-center items-center">
-              {countItemInCart}
+              {countItemInWatchList}
             </div>
           </div>
           <IoIosNotificationsOutline
