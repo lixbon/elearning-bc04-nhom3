@@ -5,9 +5,11 @@ import { courseServ } from "../../services/courseService";
 import { MdDoubleArrow } from "react-icons/md";
 import HomeBanner from "../../assets/img/banner/banner4.jpg";
 import CourseList from "./CourseList";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [categoryList, setcategoryList] = useState([]);
+  const navigate = useNavigate();
 
   let dispatch = useDispatch();
   useEffect(() => {
@@ -23,14 +25,20 @@ export default function HomePage() {
         console.log(err);
       });
   }, []);
+  const handleGoCategoryPage = (categoryid) => {
+    navigate(`/category/${categoryid}`);
+  };
   const renderCatalogeList = () => {
     return (
       <div className="max-w-layout mx-auto h-full">
         <div className="hidden lg:flex justify-between ">
-          {categoryList.map(({ tenDanhMuc }, index) => (
+          {categoryList.map(({ tenDanhMuc, maDanhMuc }, index) => (
             <div
               key={index}
-              className="flex items-center p-4 hover:border hover:border-gray-300 duration-200 cursor-pointer group"
+              className="flex items-center p-4 hover:border hover:shadow-lg hover:shadow-black duration-200 cursor-pointer group"
+              onClick={() => {
+                handleGoCategoryPage(maDanhMuc);
+              }}
             >
               <span className="mr-1 text-sm font-semibold group-hover:text-blue-500 duration-200">
                 {tenDanhMuc}

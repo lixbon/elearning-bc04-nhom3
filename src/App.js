@@ -7,6 +7,8 @@ import SecureView from "./HOC/SecureView";
 import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import "antd/dist/antd.min.css";
+import CategoryPage from "./Pages/CategoryPage/CategoryPage";
+import CourseDetailPage from "./Pages/CourseDetailPage/CourseDetailPage";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -25,6 +27,15 @@ function App() {
           <Routes>
             {/* Start Quan */}
             <Route path="/" element={<BaseLayout Component={HomePage} />} />
+            <Route
+              path="/category/:categoryid"
+              element={<BaseLayout Component={CategoryPage} />}
+            />
+            <Route
+              path="/detail/:courseid"
+              element={<BaseLayout Component={CourseDetailPage} />}
+            />
+
             <Route
               path="/checkout"
               element={

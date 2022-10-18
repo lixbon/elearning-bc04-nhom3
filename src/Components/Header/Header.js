@@ -7,11 +7,16 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import UserNav from "./UserNav";
 import { Input } from "antd";
 import HeaderMobile from "./HeaderMobile";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const { Search } = Input;
 
 export default function Header() {
   const [headerStyle, setHeaderStyle] = useState(false);
-
+  let countItemInCart = useSelector((state) => {
+    return state.cartSlice.cart.length;
+  });
+  let navigate = useNavigate();
   const changeHeaderStyle = () => {
     if (window.scrollY >= 90) {
       setHeaderStyle(true);
@@ -19,23 +24,34 @@ export default function Header() {
       setHeaderStyle(false);
     }
   };
+  const goHomePage = () => {
+    navigate("/");
+  };
   window.addEventListener("scroll", changeHeaderStyle);
   const onSearch = (value) => console.log(value);
   return (
     <div
-      className={`px-12 h-20 fixed w-full  ${
-        headerStyle ? "shadow-md shadow-gray-500 bg-gray-200" : " bg-white"
+      className={`px-12 h-20 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
+        headerStyle ? "shadow-md shadow-gray-500" : " "
       }`}
     >
       <div className="hidden lg:flex w-full h-full justify-between">
         <div className="flex space-x-4 w-2/3">
-          <div className="flex items-center">
-            <img src={cybershoplogo} alt="" className="w-16" />
-            <h2 className="uppercase text-xl font-semibold mb-0">cybersoft</h2>
+          <div
+            className="flex items-center cursor-pointer group"
+            onClick={goHomePage}
+          >
+            <img src={cybershoplogo} alt="" className="w-16 " />
+            <h2 className="uppercase text-xl font-semibold mb-0 group-hover:text-blue-500 duration-200 text-white">
+              cybersoft
+            </h2>
           </div>
           <div className="flex items-center space-x-2">
-            <FaBars className="cursor-pointer " size={30} />
-            <h3 className="mb-0 text-xl">Categories</h3>
+            <FaBars
+              className="cursor-pointer text-white hover:text-blue-500"
+              size={30}
+            />
+            <h3 className="mb-0 text-xl text-white">Categories</h3>
           </div>
           <div className="flex items-center w-1/2">
             <Search
@@ -48,14 +64,19 @@ export default function Header() {
           </div>
         </div>
         <div className="flex justify-end items-center w-1/3 space-x-2">
-          <h3 className="text-xl mb-0">My Learning</h3>
-          <AiOutlineShoppingCart
-            size={30}
-            className="cursor-pointer hover:text-green-400"
-          />
+          <h3 className="text-xl mb-0 text-white">My Learning</h3>
+          <div className="relative">
+            <AiOutlineShoppingCart
+              size={30}
+              className="cursor-pointer text-white hover:text-green-400"
+            />
+            <div className="absolute -top-3 -right-2 text-sm w-5 h-5 rounded-full bg-red-500 text-white  border border-white flex justify-center items-center">
+              {countItemInCart}
+            </div>
+          </div>
           <IoIosNotificationsOutline
             size={30}
-            className="cursor-pointer hover:text-green-400"
+            className="cursor-pointer text-white hover:text-green-400"
           />
           <UserNav />
         </div>

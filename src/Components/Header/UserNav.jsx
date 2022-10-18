@@ -22,7 +22,7 @@ export default function UserNav() {
     if (user) {
       return (
         <div className="relative">
-          <div className="flex items-center cursor-pointer hover:text-blue-400 uppercase border border-blue-500 rounded px-3 py-2 space-x-2">
+          <div className="flex items-center cursor-pointer text-white hover:text-slate-900 uppercase border  shadow-sm shadow-white rounded px-3 py-2 space-x-2">
             <FaRegUser />
             <span className="" onClick={handleSetUserPopUp}>
               {user.hoTen}
