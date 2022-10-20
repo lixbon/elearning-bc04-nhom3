@@ -7,12 +7,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import loadingSlice from "./redux/slice/loadingSlice";
 import userSlice from "./redux/slice/userSlice";
 import watchlistSlice from "./redux/slice/watchlistSlice";
+import darkModeSlice from "./redux/slice/darkModeSlice";
 
 const store = configureStore({
   reducer: {
     loadingSlice,
     userSlice,
     watchlistSlice,
+    darkModeSlice,
   },
   devTools: true,
 });

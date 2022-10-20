@@ -12,4 +12,14 @@
     max-width: 1400px;
     width: 80%;
   }
+  .glasscard {
+    background: rgba(149, 162, 172, 0.07);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(4.7px);
+    z-index: 1;
+  }
+  .glasscard:hover {
+    box-shadow: 0 4px 20px rgba(255, 255, 240, 0.4);
+  }
 }

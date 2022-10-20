@@ -35,17 +35,17 @@ export default function HomePage() {
           {categoryList.map(({ tenDanhMuc, maDanhMuc }, index) => (
             <div
               key={index}
-              className="flex items-center p-4 hover:border hover:shadow-lg hover:shadow-black duration-200 cursor-pointer group"
+              className="flex items-center p-4 hover:shadow-lg hover:shadow-black duration-200 cursor-pointer group dark:shadow-white"
               onClick={() => {
                 handleGoCategoryPage(maDanhMuc);
               }}
             >
-              <span className="mr-1 text-sm font-semibold group-hover:text-blue-500 duration-200">
+              <span className="mr-1 text-sm font-semibold group-hover:text-blue-500 duration-200 dark:text-white">
                 {tenDanhMuc}
               </span>
               <MdDoubleArrow
                 size={20}
-                className="group-hover:rotate-180 group-hover:text-blue-500 duration-500"
+                className="group-hover:rotate-180 group-hover:text-blue-500 duration-500 dark:text-white"
               />
             </div>
           ))}
@@ -54,13 +54,16 @@ export default function HomePage() {
     );
   };
   return (
-    <div className="pb-10">
-      <div className="w-full border border-gray-200">
+    <div className="pb-10 dark:bg-darkcolor2">
+      <div className="w-full border border-gray-200 dark:bg-darkcolor1 dark:border-0">
         {renderCatalogeList()}
       </div>
       <div className="max-w-layout mx-auto space-y-4">
         <img src={HomeBanner} alt="" className="w-full h-full" />
-        <h2 className="font-bold text-3xl ">Top courses in Development</h2>
+        <h2 className="font-bold text-3xl dark:text-white ">
+          Top courses in Development
+        </h2>
+
         <CourseList />
       </div>
     </div>

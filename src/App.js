@@ -11,6 +11,9 @@ import CategoryPage from "./Pages/CategoryPage/CategoryPage";
 import CourseDetailPage from "./Pages/CourseDetailPage/CourseDetailPage";
 import WatchListPage from "./Pages/WatchListPage/WatchListPage";
 import MyStudyingPage from "./Pages/MyStudyingPage/MyStudyingPage";
+import SearchPage from "./Pages/SearchPage/SearchPage";
+import SocialMedia from "./Components/SocialMedia/SocialMedia";
+import { useSelector } from "react-redux";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -21,9 +24,13 @@ const Wrapper = ({ children }) => {
 };
 
 function App() {
+  let { isdarkMode } = useSelector((state) => {
+    return state.darkModeSlice;
+  });
   return (
-    <div>
+    <div className={isdarkMode ? "dark" : ""}>
       <Loading />
+      <SocialMedia />
       <BrowserRouter>
         <Wrapper>
           <Routes>
@@ -45,6 +52,10 @@ function App() {
               path="/studying"
               element={<BaseLayout Component={MyStudyingPage} />}
             />
+            <Route
+              path="/search/:value"
+              element={<BaseLayout Component={SearchPage} />}
+            />
 
             <Route
               path="/checkout"
@@ -54,6 +65,7 @@ function App() {
                 </SecureView>
               }
             />
+
             {/* End Quan */}
 
             {/* Start Hong Anh */}

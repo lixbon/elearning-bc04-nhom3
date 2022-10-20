@@ -3,12 +3,15 @@ import cybershoplogo from "../../assets/img/cyberlogo.png";
 import { FaBars } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { TfiBag } from "react-icons/tfi";
+import { MdDarkMode } from "react-icons/md";
+import { BsSunFill } from "react-icons/bs";
 
 import UserNav from "./UserNav";
 import { Input } from "antd";
 import HeaderMobile from "./HeaderMobile";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setDarkMode } from "../../redux/slice/darkModeSlice";
 const { Search } = Input;
 
 export default function Header() {
@@ -16,6 +19,10 @@ export default function Header() {
   let countItemInWatchList = useSelector((state) => {
     return state.watchlistSlice.watchlist.length;
   });
+  let { isdarkMode } = useSelector((state) => {
+    return state.darkModeSlice;
+  });
+  let dispatch = useDispatch();
   let navigate = useNavigate();
   const changeHeaderStyle = () => {
     if (window.scrollY >= 90) {
@@ -23,6 +30,9 @@ export default function Header() {
     } else {
       setHeaderStyle(false);
     }
+  };
+  const handleDarkMode = () => {
+    dispatch(setDarkMode());
   };
   const goHomePage = () => {
     navigate("/");
@@ -34,10 +44,12 @@ export default function Header() {
     navigate("/studying");
   };
   window.addEventListener("scroll", changeHeaderStyle);
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+    navigate(`/search/${value}`);
+  };
   return (
     <div
-      className={`px-12 h-20 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
+      className={`px-12 h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
         headerStyle ? "shadow-md shadow-gray-500" : " "
       }`}
     >
@@ -86,10 +98,19 @@ export default function Header() {
               {countItemInWatchList}
             </div>
           </div>
-          <IoIosNotificationsOutline
-            size={30}
-            className="cursor-pointer text-white hover:text-green-400"
-          />
+          {isdarkMode ? (
+            <BsSunFill
+              size={30}
+              className="cursor-pointer text-white hover:text-yellow-500"
+              onClick={handleDarkMode}
+            />
+          ) : (
+            <MdDarkMode
+              size={30}
+              className="cursor-pointer text-white hover:text-slate-400"
+              onClick={handleDarkMode}
+            />
+          )}
           <UserNav />
         </div>
       </div>

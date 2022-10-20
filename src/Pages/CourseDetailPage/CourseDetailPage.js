@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
@@ -8,12 +8,13 @@ import { message, Rate } from "antd";
 import Button from "../../Components/Button/Button";
 import { addToWatchlist } from "../../redux/slice/watchlistSlice";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
-import { courseRegisterAction } from "../../redux/action/courseAction";
 
 export default function CourseDetailPage() {
   const [courseDetail, setcourseDetail] = useState({});
   const { courseid } = useParams();
-
+  let { watchlist } = useSelector((state) => {
+    return state.watchlistSlice;
+  });
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLoadingON());
@@ -28,20 +29,36 @@ export default function CourseDetailPage() {
         console.log(err);
       });
   }, []);
-  const handleAddCourseToWatchlist = (course) => {
-    dispatch(addToWatchlist(course));
+  const renderAddToWatchlistButton = (course) => {
+    let index = watchlist.findIndex((item) => {
+      return courseid == item.maKhoaHoc;
+    });
+    if (index == -1) {
+      return (
+        <Button
+          className="text-white bg-blue-500 hover:bg-red-500"
+          onClick={() => {
+            dispatch(addToWatchlist(course));
+          }}
+        >
+          add to watchlist
+        </Button>
+      );
+    }
   };
-  const CourseRegister = () => {
+  const handleCourseRegister = () => {
     const registerInfo = new CourseRegisterInfo();
     registerInfo.maKhoaHoc = courseid;
     registerInfo.taiKhoan = "string";
-    let onSuccess = (notifications) => {
-      message.success(notifications);
-    };
-    let onFail = (reason) => {
-      message.error(reason);
-    };
-    dispatch(courseRegisterAction(registerInfo, onSuccess, onFail));
+    courseServ
+      .postCourseRegister(registerInfo)
+      .then((res) => {
+        message.success(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        message.error(err.response.data);
+      });
   };
   const {
     biDanh,
@@ -57,7 +74,7 @@ export default function CourseDetailPage() {
     tenKhoaHoc,
   } = courseDetail;
   return (
-    <div className="min-h-[80vh]">
+    <div className="min-h-[80vh] dark:bg-darkcolor2">
       <div className={`${Style["coursedetailbanner"]} h-[500px]`}>
         <div className="max-w-layout mx-auto h-full flex">
           <div className="w-7/12 flex justify-start items-center px-10">
@@ -75,18 +92,11 @@ export default function CourseDetailPage() {
               <div className="flex space-x-4">
                 <Button
                   className="text-white bg-slate-600 hover:bg-red-500"
-                  onClick={CourseRegister}
+                  onClick={handleCourseRegister}
                 >
                   register now
                 </Button>
-                <Button
-                  className="text-white bg-blue-500 hover:bg-red-500"
-                  onClick={() => {
-                    handleAddCourseToWatchlist(courseDetail);
-                  }}
-                >
-                  add to watchlist
-                </Button>
+                {renderAddToWatchlistButton(courseDetail)}
               </div>
             </div>
           </div>
@@ -98,7 +108,7 @@ export default function CourseDetailPage() {
         </div>
       </div>
       <div>
-        <div className="max-w-layout mx-auto">
+        <div className="max-w-layout mx-auto dark:text-white">
           <p className="text-xl">
             <span className="font-semibold"> Description: </span>
             <span className="text-lg">{moTa}</span>

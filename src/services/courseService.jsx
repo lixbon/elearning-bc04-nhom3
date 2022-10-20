@@ -9,6 +9,10 @@ export const courseServ = {
     let uri = "/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01";
     return https.get(uri);
   },
+  getCourseListSearch: (value) => {
+    let uri = `/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${value}&MaNhom=GP01`;
+    return https.get(uri);
+  },
   getCourseByCategory: (categoryid) => {
     let uri = `/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${categoryid}&MaNhom=GP01`;
     return https.get(uri);
@@ -19,6 +23,10 @@ export const courseServ = {
   },
   postCourseRegister: (data) => {
     let uri = "/api/QuanLyKhoaHoc/DangKyKhoaHoc";
+    return https.post(uri, data);
+  },
+  postCourseRemove: (data) => {
+    let uri = "/api/QuanLyKhoaHoc/HuyGhiDanh";
     return https.post(uri, data);
   },
 };

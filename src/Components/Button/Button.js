@@ -5,7 +5,7 @@ export default function Button({ children, onClick, className }) {
     <button
       onClick={onClick}
       className={
-        `px-4 py-2 border rounded-md hover:scale-105 duration-200 text-sm font-semibold hover:shadow-sm hover:shadow-white uppercase` +
+        `px-4 py-2 border rounded-md hover:scale-105 duration-200 text-sm font-semibold hover:shadow-sm hover:shadow-white uppercase dark:text-white z-10` +
         " " +
         className
       }
