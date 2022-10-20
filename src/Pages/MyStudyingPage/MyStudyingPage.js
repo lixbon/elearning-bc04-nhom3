@@ -1,14 +1,14 @@
-import { message, Rate } from "antd";
+import { Rate } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../Components/Button/Button";
-import CourseCard from "../../Components/CourseCard/CourseCard";
 import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import { userServ } from "../../services/userService";
 import moment from "moment";
 import _ from "lodash";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
+import { setMessageOn } from "../../redux/slice/messageSlice";
 
 export default function MyStudyingPage() {
   const [userInfo, setuserInfo] = useState([]);
@@ -91,12 +91,12 @@ export default function MyStudyingPage() {
     courseServ
       .postCourseRemove(registerInfo)
       .then((res) => {
-        message.success(res.data);
+        dispatch(setMessageOn(res.data));
         setcheck(!check);
       })
       .catch((err) => {
         console.log(err);
-        message.error(err.response.data);
+        dispatch(setMessageOn(err.response.data));
       });
   };
   return (

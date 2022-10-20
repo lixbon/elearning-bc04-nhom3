@@ -8,6 +8,7 @@ import loadingSlice from "./redux/slice/loadingSlice";
 import userSlice from "./redux/slice/userSlice";
 import watchlistSlice from "./redux/slice/watchlistSlice";
 import darkModeSlice from "./redux/slice/darkModeSlice";
+import messageSlice from "./redux/slice/messageSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     userSlice,
     watchlistSlice,
     darkModeSlice,
+    messageSlice,
   },
   devTools: true,
 });

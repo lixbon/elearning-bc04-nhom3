@@ -4,10 +4,10 @@ import moment from "moment";
 import _ from "lodash";
 import Button from "../../Components/Button/Button";
 import { courseServ } from "../../services/courseService";
-import { message } from "antd";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
 import { removeFromWatchlist } from "../../redux/slice/watchlistSlice";
 import { useNavigate } from "react-router-dom";
+import { setMessageOn } from "../../redux/slice/messageSlice";
 
 export default function WatchListPage() {
   let { watchlist } = useSelector((state) => {
@@ -22,13 +22,15 @@ export default function WatchListPage() {
     courseServ
       .postCourseRegister(registerInfo)
       .then((res) => {
-        message.success(res.data);
+        dispatch(setMessageOn(res.data));
         dispatch(removeFromWatchlist(courseid));
-        navigate("/studying");
+        setTimeout(() => {
+          navigate("/studying");
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
-        message.error(err.response.data);
+        dispatch(setMessageOn(err.response.data));
       });
   };
   const handleRemoveCourseFromWatchList = (maKhoaHoc) => {

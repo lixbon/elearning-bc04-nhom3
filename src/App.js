@@ -4,7 +4,6 @@ import "./App.css";
 import Loading from "./Components/Loading/Loading";
 import BaseLayout from "./HOC/BaseLayout";
 import SecureView from "./HOC/SecureView";
-import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import "antd/dist/antd.min.css";
 import CategoryPage from "./Pages/CategoryPage/CategoryPage";
@@ -14,6 +13,7 @@ import MyStudyingPage from "./Pages/MyStudyingPage/MyStudyingPage";
 import SearchPage from "./Pages/SearchPage/SearchPage";
 import SocialMedia from "./Components/SocialMedia/SocialMedia";
 import { useSelector } from "react-redux";
+import Message from "./Components/Message/Message";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -31,6 +31,7 @@ function App() {
     <div className={isdarkMode ? "dark" : ""}>
       <Loading />
       <SocialMedia />
+      <Message />
       <BrowserRouter>
         <Wrapper>
           <Routes>
@@ -57,14 +58,7 @@ function App() {
               element={<BaseLayout Component={SearchPage} />}
             />
 
-            <Route
-              path="/checkout"
-              element={
-                <SecureView>
-                  <BaseLayout Component={CheckOutPage} />
-                </SecureView>
-              }
-            />
+            <Route path="/checkout" element={<SecureView></SecureView>} />
 
             {/* End Quan */}
 

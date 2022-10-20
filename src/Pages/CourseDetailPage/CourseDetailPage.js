@@ -8,6 +8,7 @@ import { message, Rate } from "antd";
 import Button from "../../Components/Button/Button";
 import { addToWatchlist } from "../../redux/slice/watchlistSlice";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
+import { setMessageOn } from "../../redux/slice/messageSlice";
 
 export default function CourseDetailPage() {
   const [courseDetail, setcourseDetail] = useState({});
@@ -53,11 +54,10 @@ export default function CourseDetailPage() {
     courseServ
       .postCourseRegister(registerInfo)
       .then((res) => {
-        message.success(res.data);
+        dispatch(setMessageOn(res.data));
       })
       .catch((err) => {
-        console.log(err);
-        message.error(err.response.data);
+        dispatch(setMessageOn(err.response.data));
       });
   };
   const {
@@ -100,9 +100,9 @@ export default function CourseDetailPage() {
               </div>
             </div>
           </div>
-          <div className="w-5/12 flex items-center justify-center p-4">
+          <div className="w-5/12 flex items-center justify-center p-4 overflow-hidden">
             <div className="border border-white shadow-lg shadow-white rounded-2xl overflow-hidden w-full bg-[#0000001a]">
-              <img src={hinhAnh} alt="" className="w-full" />
+              <img src={hinhAnh} alt="" className="w-full max-h-96" />
             </div>
           </div>
         </div>
