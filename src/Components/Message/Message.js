@@ -19,10 +19,12 @@ export default function Message() {
       className="h-screen w-screen fixed left-0 top-0 bg-[#ffffffd9] dark:bg-[#000000e6] flex justify-center items-center z-50"
     >
       <div className="border-blue-500 bg-gradient-to-r from-slate-600 to-blue-900 border py-20 px-4 rounded-3xl flex flex-col items-center space-y-4">
-        <h3 className="text-3xl text-white">{message}</h3>
+        <h3 className="text-xl md:text-2xl lg:text-3xl text-white">
+          {message}
+        </h3>
         <button
           onClick={handleCloseMessage}
-          className="px-10 py-4 border border-blue-700 bg-gradient-to-r from-orange-500 to-red-400 text-white text-3xl font-bold rounded-lg hover:text-blue-500 hover:scale-110 duration-200"
+          className="px-6 lg:px-10 py-4 border border-blue-700 bg-gradient-to-r from-orange-500 to-red-400 text-white text-xl lg:text-3xl font-bold rounded-lg hover:text-blue-500 hover:scale-110 duration-200"
         >
           OK
         </button>

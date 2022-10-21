@@ -11,6 +11,11 @@
   .max-w-layout {
     max-width: 1400px;
     width: 80%;
+    padding: 0;
+  }
+  .max-w-mobile {
+    padding: 0 16px;
+    width: 100%;
   }
   .glasscard {
     background: rgba(149, 162, 172, 0.07);

@@ -8,9 +8,9 @@ import Button from "../Button/Button";
 export default function Footer() {
   return (
     <div className="py-4 bg-slate-900 z-10">
-      <div className="max-w-layout mx-auto space-y-2">
-        <div className="grid grid-cols-3">
-          <div className="space-y-4">
+      <div className="max-w-mobile lg:max-w-layout mx-auto space-y-2">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:gap-0 lg:grid-cols-3">
+          <div className="space-y-4 col-span-1">
             <div>
               <div className="flex items-center">
                 <img src={Cyberlogo} alt="" />
@@ -31,12 +31,15 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div>
-            <h3 className="text-white uppercase text-xl">
+          <div className="col-span-1 flex items-center justify-center md:justify-end lg:justify-center ">
+            <IframeFaceBook />
+          </div>
+          <div className="col-span-1 md:col-span-2 lg:col-span-1">
+            <h3 className="text-white uppercase text-xl text-center">
               Sign up for a consultation
             </h3>
-            <div className="pr-10 space-y-4">
-              <form className="flex flex-col space-y-2">
+            <div className="flex flex-col items-center space-y-4">
+              <form className="flex flex-col space-y-4 w-full md:w-2/3 lg:w-full">
                 <input placeholder="Name" type="text" className="h-8" />
                 <input placeholder="Email" type="text" className="h-8" />
                 <input placeholder="Phone Number" type="text" className="h-8" />
@@ -46,7 +49,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <IframeFaceBook />
         </div>
         <hr style={{ border: "2px solid gray" }} />
         <h3 className="text-white mb-0 text-center">

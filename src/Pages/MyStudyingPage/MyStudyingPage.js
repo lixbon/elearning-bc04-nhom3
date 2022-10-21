@@ -53,11 +53,22 @@ export default function MyStudyingPage() {
             </h3>
             <div className="flex items-center">
               <h3 className="mb-0 dark:text-white">Rate:</h3>
-              <Rate
-                disabled
-                defaultValue={danhGia / 2}
-                className="relative bottom-1 -z-10"
-              />
+              <div className="hidden lg:flex">
+                <Rate
+                  disabled
+                  defaultValue={danhGia / 2}
+                  className="relative bottom-1 z-0 border-hidden"
+                  style={{ fontSize: 18 }}
+                />
+              </div>
+              <div className="flex lg:hidden">
+                <Rate
+                  disabled
+                  defaultValue={danhGia / 2}
+                  className="relative bottom-1 z-0"
+                  style={{ fontSize: 14 }}
+                />
+              </div>
             </div>
             <h3 className="mb-0 dark:text-white">
               Date:{" "}
@@ -69,10 +80,15 @@ export default function MyStudyingPage() {
               CourseID: <span className="text-blue-500">{maKhoaHoc}</span>
             </h3>
           </div>
-          <div className="col-span-6 flex justify-start items-center dark:text-white px-2">
-            <p>{_.truncate(moTa, { length: "500" })}</p>
+          <div className="col-span-5 lg:col-span-6 flex justify-start items-center dark:text-white px-2">
+            <p className="block lg:hidden">
+              {_.truncate(moTa, { length: "200" })}
+            </p>
+            <p className="hidden lg:block">
+              {_.truncate(moTa, { length: "500" })}
+            </p>
           </div>
-          <div className="col-span-1 flex items-center justify-center">
+          <div className="col-span-2 lg:col-span-1 flex items-center justify-center z-0">
             <Button
               onClick={() => {
                 handleCourseRemove(maKhoaHoc);
@@ -102,11 +118,11 @@ export default function MyStudyingPage() {
   return (
     <div className="min-h-[80vh] pb-10 dark:bg-darkcolor2 space-y-10 relative">
       <div className="bg-gradient-to-r from-red-900 to-white">
-        <div className="max-w-layout mx-auto py-4">
+        <div className="max-w-mobile lg:max-w-layout mx-auto py-4">
           <h2 className="text-4xl mb-0 text-white">My Learning</h2>
         </div>
       </div>
-      <div className="mx-auto max-w-layout">
+      <div className="mx-auto max-w-mobile lg:max-w-layout">
         <div>
           <div className="grid grid-cols-1">{renderRegistedCourse()}</div>
         </div>

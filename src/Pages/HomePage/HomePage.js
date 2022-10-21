@@ -30,7 +30,7 @@ export default function HomePage() {
   };
   const renderCatalogeList = () => {
     return (
-      <div className="max-w-layout mx-auto h-full">
+      <div className="max-w-mobile lg:max-w-layout mx-auto h-full">
         <div className="hidden lg:flex justify-between ">
           {categoryList.map(({ tenDanhMuc, maDanhMuc }, index) => (
             <div
@@ -58,12 +58,10 @@ export default function HomePage() {
       <div className="w-full border border-gray-200 dark:bg-darkcolor1 dark:border-0">
         {renderCatalogeList()}
       </div>
-      <div className="max-w-layout mx-auto space-y-4">
-        <img src={HomeBanner} alt="" className="w-full h-full" />
-        <h2 className="font-bold text-3xl dark:text-white ">
-          Top courses in Development
-        </h2>
-
+      <div className=" space-y-4">
+        <div className="max-w-mobile lg:max-w-layout mx-auto">
+          <img src={HomeBanner} alt="" className="w-full h-full" />
+        </div>
         <CourseList />
       </div>
     </div>

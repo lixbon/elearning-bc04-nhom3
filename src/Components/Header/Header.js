@@ -49,7 +49,7 @@ export default function Header() {
   };
   return (
     <div
-      className={`px-12 h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
+      className={`px-4 lg:px-12 h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
         headerStyle ? "shadow-md shadow-gray-500" : " "
       }`}
     >

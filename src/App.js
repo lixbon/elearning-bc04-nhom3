@@ -28,7 +28,7 @@ function App() {
     return state.darkModeSlice;
   });
   return (
-    <div className={isdarkMode ? "dark" : ""}>
+    <div className={isdarkMode ? "dark overflow-hidden" : "overflow-hidden"}>
       <Loading />
       <SocialMedia />
       <Message />
