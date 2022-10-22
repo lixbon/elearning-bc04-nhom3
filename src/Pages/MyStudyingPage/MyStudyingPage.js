@@ -42,12 +42,12 @@ export default function MyStudyingPage() {
       ({ danhGia, hinhAnh, maKhoaHoc, moTa, ngayTao, tenKhoaHoc }, index) => (
         <div
           key={index}
-          className="grid grid-cols-10 border border-slate-400  divide-x divide-slate-400"
+          className=" pb-4 md:pb-0 grid grid-cols-10 border border-slate-400  md:divide-x md:divide-slate-400"
         >
-          <div className="h-full flex items-center col-span-1 pl-2">
-            <img src={hinhAnh} alt="" className="w-20" />
+          <div className="h-full flex items-center col-span-5 md:col-span-1 pl-2">
+            <img src={hinhAnh} alt="" className="w-32 md:w-20" />
           </div>
-          <div className="col-span-2 flex flex-col justify-center p-2">
+          <div className="col-span-5 md:col-span-2 flex flex-col justify-center p-2">
             <h3 className="mb-0 dark:text-white">
               Name: <span className="text-blue-500">{tenKhoaHoc}</span>
             </h3>
@@ -80,7 +80,7 @@ export default function MyStudyingPage() {
               CourseID: <span className="text-blue-500">{maKhoaHoc}</span>
             </h3>
           </div>
-          <div className="col-span-5 lg:col-span-6 flex justify-start items-center dark:text-white px-2">
+          <div className="col-span-10 md:col-span-5 lg:col-span-6 flex justify-start items-center dark:text-white px-2">
             <p className="block lg:hidden">
               {_.truncate(moTa, { length: "200" })}
             </p>
@@ -88,11 +88,12 @@ export default function MyStudyingPage() {
               {_.truncate(moTa, { length: "500" })}
             </p>
           </div>
-          <div className="col-span-2 lg:col-span-1 flex items-center justify-center z-0">
+          <div className="col-span-10 md:col-span-2 lg:col-span-1 flex items-center justify-center">
             <Button
               onClick={() => {
                 handleCourseRemove(maKhoaHoc);
               }}
+              className="dark:hover:text-red-500"
             >
               Delete
             </Button>

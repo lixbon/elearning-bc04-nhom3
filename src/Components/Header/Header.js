@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import cybershoplogo from "../../assets/img/cyberlogo.png";
 import { FaBars } from "react-icons/fa";
-import { IoIosNotificationsOutline } from "react-icons/io";
 import { TfiBag } from "react-icons/tfi";
 import { MdDarkMode } from "react-icons/md";
 import { BsSunFill } from "react-icons/bs";
@@ -49,11 +48,11 @@ export default function Header() {
   };
   return (
     <div
-      className={`px-4 lg:px-12 h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
+      className={`h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${
         headerStyle ? "shadow-md shadow-gray-500" : " "
       }`}
     >
-      <div className="hidden lg:flex w-full h-full justify-between">
+      <div className="px-12 hidden lg:flex w-full h-full justify-between">
         <div className="flex space-x-4 w-2/3">
           <div
             className="flex items-center cursor-pointer group"
@@ -114,7 +113,7 @@ export default function Header() {
           <UserNav />
         </div>
       </div>
-      <div className="flex lg:hidden h-full relative">
+      <div className="px-4 flex lg:hidden h-full relative">
         <HeaderMobile />
       </div>
     </div>
