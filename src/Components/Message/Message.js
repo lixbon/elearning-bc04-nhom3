@@ -18,7 +18,7 @@ export default function Message() {
       style={{ marginTop: 0 }}
       className="h-screen w-screen fixed left-0 top-0 bg-[#ffffffd9] dark:bg-[#000000e6] flex justify-center items-center z-50"
     >
-      <div className="border-blue-500 bg-gradient-to-r from-slate-600 to-blue-900 border py-20 px-4 rounded-3xl flex flex-col items-center space-y-4">
+      <div className="border-blue-500 bg-gradient-to-r from-slate-600 to-blue-900 border py-10 md:py-20 px-4 rounded-3xl flex flex-col items-center space-y-4">
         <h3 className="text-xl md:text-2xl lg:text-3xl text-white">
           {message}
         </h3>

@@ -36,7 +36,7 @@ export default function CourseList() {
         <h2 className="font-bold text-lg md:text-xl lg:text-2xl xl:text-3xl dark:text-white ">
           Top courses in Development
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-6 xl:gap-8">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4  lg:gap-10">
           {showAllCourse
             ? renderCourseList(courseList.length)
             : renderCourseList(8)}

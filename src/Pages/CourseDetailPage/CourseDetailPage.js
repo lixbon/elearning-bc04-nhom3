@@ -51,13 +51,16 @@ export default function CourseDetailPage() {
     const registerInfo = new CourseRegisterInfo();
     registerInfo.maKhoaHoc = courseid;
     registerInfo.taiKhoan = "string";
+    dispatch(setLoadingON());
     courseServ
       .postCourseRegister(registerInfo)
       .then((res) => {
         dispatch(setMessageOn(res.data));
+        dispatch(setLoadingOFF());
       })
       .catch((err) => {
         dispatch(setMessageOn(err.response.data));
+        dispatch(setLoadingOFF());
       });
   };
   const {
