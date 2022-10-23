@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import Style from "./coursedetailpage.module.css";
@@ -9,16 +9,17 @@ import Button from "../../Components/Button/Button";
 import { addToWatchlist } from "../../redux/slice/watchlistSlice";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
 import { setMessageOn } from "../../redux/slice/messageSlice";
+import { localServ } from "../../services/localService";
 
 export default function CourseDetailPage() {
   const [courseDetail, setcourseDetail] = useState({});
   const { courseid } = useParams();
+  let navigate = useNavigate();
+  let user = localServ.user.get();
   let { watchlist } = useSelector((state) => {
     return state.watchlistSlice;
   });
-  let { user } = useSelector((state) => {
-    return state.userSlice;
-  });
+
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLoadingON());
@@ -51,20 +52,24 @@ export default function CourseDetailPage() {
     }
   };
   const handleCourseRegister = () => {
-    const registerInfo = new CourseRegisterInfo();
-    registerInfo.maKhoaHoc = courseid;
-    registerInfo.taiKhoan = user?.taiKhoan;
-    dispatch(setLoadingON());
-    courseServ
-      .postCourseRegister(registerInfo)
-      .then((res) => {
-        dispatch(setMessageOn(res.data));
-        dispatch(setLoadingOFF());
-      })
-      .catch((err) => {
-        dispatch(setMessageOn(err.response.data));
-        dispatch(setLoadingOFF());
-      });
+    if (user) {
+      const registerInfo = new CourseRegisterInfo();
+      registerInfo.maKhoaHoc = courseid;
+      registerInfo.taiKhoan = localServ.user.get().taiKhoan;
+      dispatch(setLoadingON());
+      courseServ
+        .postCourseRegister(registerInfo)
+        .then((res) => {
+          dispatch(setMessageOn(res.data));
+          dispatch(setLoadingOFF());
+        })
+        .catch((err) => {
+          dispatch(setMessageOn(err.response.data));
+          dispatch(setLoadingOFF());
+        });
+    } else {
+      navigate("/login");
+    }
   };
   const {
     biDanh,

@@ -49,16 +49,20 @@ function App() {
               path="/watchlist"
               element={<BaseLayout Component={WatchListPage} />}
             />
-            <Route
-              path="/studying"
-              element={<BaseLayout Component={MyStudyingPage} />}
-            />
+
             <Route
               path="/search/:value"
               element={<BaseLayout Component={SearchPage} />}
             />
 
-            <Route path="/checkout" element={<SecureView></SecureView>} />
+            <Route
+              path="/studying"
+              element={
+                <SecureView>
+                  <BaseLayout Component={MyStudyingPage} />
+                </SecureView>
+              }
+            />
 
             {/* End Quan */}
 

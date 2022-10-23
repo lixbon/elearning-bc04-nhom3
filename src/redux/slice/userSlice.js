@@ -3,11 +3,7 @@ import { localServ } from "../../services/localService";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-  // user: localServ.user.get(),
-  user: {
-    hoTen: "lixbon",
-    taiKhoan: "lixbon",
-  },
+  user: localServ.user.get(),
 };
 const userSlice = createSlice({
   name: "userSlice",
