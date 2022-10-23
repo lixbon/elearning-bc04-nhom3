@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { localServ } from "../../services/localService";
 import Button from "../Button/Button";
 import { FaRegUser } from "react-icons/fa";
@@ -12,6 +12,13 @@ export default function UserNav() {
   const [userpopup, setuserpopup] = useState(false);
   const handleSetUserPopUp = () => {
     setuserpopup(!userpopup);
+  };
+  let navigate = useNavigate();
+  const handleGoLoginPage = () => {
+    navigate("/login");
+  };
+  const handleGoRegister = () => {
+    navigate("/register");
   };
   const handleLogOut = () => {
     localServ.user.remove();
@@ -52,12 +59,13 @@ export default function UserNav() {
     } else {
       return (
         <div className="space-x-4">
-          <NavLink to="/login" className="">
-            <Button content={"Đăng Nhập"} />
-          </NavLink>
-          <NavLink to="/register" className="">
-            <Button content={"Đăng Ký"} />
-          </NavLink>
+          <Button onClick={handleGoLoginPage}>Login</Button>
+          <Button
+            className="bg-gradient-to-r from-slate-900 to-slate-600"
+            onClick={handleGoRegister}
+          >
+            Sign up
+          </Button>
         </div>
       );
     }

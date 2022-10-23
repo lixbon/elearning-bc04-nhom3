@@ -16,6 +16,9 @@ export default function CourseDetailPage() {
   let { watchlist } = useSelector((state) => {
     return state.watchlistSlice;
   });
+  let { user } = useSelector((state) => {
+    return state.userSlice;
+  });
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLoadingON());
@@ -50,7 +53,7 @@ export default function CourseDetailPage() {
   const handleCourseRegister = () => {
     const registerInfo = new CourseRegisterInfo();
     registerInfo.maKhoaHoc = courseid;
-    registerInfo.taiKhoan = "string";
+    registerInfo.taiKhoan = user?.taiKhoan;
     dispatch(setLoadingON());
     courseServ
       .postCourseRegister(registerInfo)

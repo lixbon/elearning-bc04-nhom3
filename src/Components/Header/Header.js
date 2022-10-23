@@ -64,11 +64,7 @@ export default function Header() {
             </h2>
           </div>
           <div className="flex items-center space-x-2">
-            <FaBars
-              className="cursor-pointer text-white hover:text-blue-500"
-              size={30}
-            />
-            <h3 className="mb-0 text-xl text-white">Categories</h3>
+            <h3 className="mb-0 text-xl text-white">Search</h3>
           </div>
           <div className="flex items-center w-1/2">
             <Search

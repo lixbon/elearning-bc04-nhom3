@@ -30,8 +30,8 @@ export default function CategoryPage() {
   return (
     <div className="pb-10 min-h-[80vh] space-y-10 relative dark:bg-darkcolor2">
       <div className="bg-gradient-to-r from-red-900 to-white">
-        <div className="max-w-mobile lg:max-w-layout mx-auto py-4">
-          <h2 className="text-4xl text-white mb-0 uppercase">
+        <div className="max-w-mobile lg:max-w-layout mx-auto">
+          <h2 className="text-4xl text-white mb-0 uppercase py-4">
             {courseList[0]?.danhMucKhoaHoc.tenDanhMucKhoaHoc}
           </h2>
         </div>

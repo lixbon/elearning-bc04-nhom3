@@ -8,6 +8,7 @@ import Category from "../Category/Category";
 import { MdDarkMode } from "react-icons/md";
 import { BsSunFill } from "react-icons/bs";
 import { setDarkMode } from "../../redux/slice/darkModeSlice";
+import CategoryInMenu from "../Category/CategoryInMenu";
 
 export default function HeaderMobile() {
   const [nav, setNav] = useState(false);
@@ -100,7 +101,7 @@ export default function HeaderMobile() {
               </div>
             </div>
             <hr />
-            <Category nav={nav} setNav={setNav} />
+            <CategoryInMenu nav={nav} setNav={setNav} />
             <hr />
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
               {isdarkMode ? (

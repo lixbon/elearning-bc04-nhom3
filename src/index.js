@@ -9,6 +9,7 @@ import userSlice from "./redux/slice/userSlice";
 import watchlistSlice from "./redux/slice/watchlistSlice";
 import darkModeSlice from "./redux/slice/darkModeSlice";
 import messageSlice from "./redux/slice/messageSlice";
+import categorySlice from "./redux/slice/categorySlice";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     watchlistSlice,
     darkModeSlice,
     messageSlice,
+    categorySlice,
   },
   devTools: true,
 });

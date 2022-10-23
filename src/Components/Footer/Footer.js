@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 
 export default function Footer() {
   return (
-    <div className="py-4 bg-slate-900 z-10">
+    <div className="py-10 bg-slate-900 z-10">
       <div className="max-w-mobile lg:max-w-layout mx-auto space-y-2">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:gap-0 lg:grid-cols-3">
           <div className="space-y-4 col-span-1">

@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   // user: localServ.user.get(),
   user: {
-    hoTen: "fakeTest",
+    hoTen: "lixbon",
+    taiKhoan: "lixbon",
   },
 };
 const userSlice = createSlice({

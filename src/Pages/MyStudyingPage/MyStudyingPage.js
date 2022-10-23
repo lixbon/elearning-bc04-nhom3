@@ -104,7 +104,7 @@ export default function MyStudyingPage() {
   const handleCourseRemove = (courseid) => {
     const registerInfo = new CourseRegisterInfo();
     registerInfo.maKhoaHoc = courseid;
-    registerInfo.taiKhoan = "string";
+    registerInfo.taiKhoan = userInfo?.taiKhoan;
     courseServ
       .postCourseRemove(registerInfo)
       .then((res) => {
@@ -119,8 +119,8 @@ export default function MyStudyingPage() {
   return (
     <div className="min-h-[80vh] pb-10 dark:bg-darkcolor2 space-y-10 relative">
       <div className="bg-gradient-to-r from-red-900 to-white">
-        <div className="max-w-mobile lg:max-w-layout mx-auto py-4">
-          <h2 className="text-4xl mb-0 text-white">My Learning</h2>
+        <div className="max-w-mobile lg:max-w-layout mx-auto">
+          <h2 className="text-4xl mb-0 text-white  py-4">My Learning</h2>
         </div>
       </div>
       <div className="mx-auto max-w-mobile lg:max-w-layout">
