@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
-import { courseServ } from "../../services/courseService";
 import { MdDoubleArrow } from "react-icons/md";
-import { setCategoryList } from "../../redux/slice/categorySlice";
+import { useSelector } from "react-redux";
 
 export default function Category() {
-  const [categoryList, setcategoryList] = useState([]);
   const navigate = useNavigate();
-  let dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setLoadingON());
-    courseServ
-      .getCategoryList()
-      .then((res) => {
-        dispatch(setLoadingOFF());
-        dispatch(setCategoryList(res.data));
-        setcategoryList(res.data);
-      })
-      .catch((err) => {
-        dispatch(setLoadingOFF());
-        console.log(err);
-      });
-  }, []);
+
+  let { categoryList } = useSelector((state) => {
+    return state.categorySlice;
+  });
   const handleGoCategoryPage = (categoryid) => {
     navigate(`/category/${categoryid}`);
   };

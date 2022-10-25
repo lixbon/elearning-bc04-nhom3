@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import Style from "./coursedetailpage.module.css";
-import { message, Rate } from "antd";
+import { Rate } from "antd";
 import Button from "../../Components/Button/Button";
 import { addToWatchlist } from "../../redux/slice/watchlistSlice";
 import { CourseRegisterInfo } from "../../Model/CourseRegisterInfo";
@@ -36,12 +36,12 @@ export default function CourseDetailPage() {
   }, []);
   const renderAddToWatchlistButton = (course) => {
     let index = watchlist.findIndex((item) => {
-      return courseid == item.maKhoaHoc;
+      return courseid === item.maKhoaHoc;
     });
-    if (index == -1) {
+    if (index === -1) {
       return (
         <Button
-          className="text-white bg-blue-500 hover:bg-red-500"
+          className="text-white bg-blue-500 hover:bg-red-500 text-xs xs:text-sm"
           onClick={() => {
             dispatch(addToWatchlist(course));
           }}
@@ -72,16 +72,12 @@ export default function CourseDetailPage() {
     }
   };
   const {
-    biDanh,
-    danhMucKhoaHoc,
     hinhAnh,
     luotXem,
     maKhoaHoc,
-    maNhom,
     moTa,
     ngayTao,
-    nguoiTao,
-    soLuongHocVien,
+
     tenKhoaHoc,
   } = courseDetail;
   return (
@@ -90,21 +86,26 @@ export default function CourseDetailPage() {
         <div className="max-w-mobile lg:max-w-layout mx-auto h-full flex flex-col-reverse md:flex-row">
           <div className="w-full md:w-7/12 flex justify-start items-center px-0 lg:px-10">
             <div className="border border-green-400 py-5 w-full rounded-2xl bg-gradient-to-r from-[#43ff64e6] to-[#43ff6480] flex flex-col justify-center space-y-1 pl-4">
-              <h2 className="text-white font-bold mb-0 text-xl lg:text-2xl 2xl:text-4xl">
+              <h2 className="text-white font-bold mb-0 text-lg xs:text-xl lg:text-2xl 2xl:text-4xl">
                 {tenKhoaHoc}
               </h2>
               <div className="flex items-center space-x-2">
-                <h2 className="capitalize text-white text-lg lg:text-xl mb-0">
+                <h2 className="capitalize text-white text-sm xs:text-lg lg:text-xl mb-0">
                   course evaluation:
                 </h2>
-                <Rate allowHalf defaultValue={2.5} />
+                <div className="block xs:hidden">
+                  <Rate allowHalf defaultValue={2.5} style={{ fontSize: 14 }} />
+                </div>
+                <div className="hidden xs:block">
+                  <Rate allowHalf defaultValue={2.5} style={{ fontSize: 20 }} />
+                </div>
               </div>
-              <h2 className="mb-0 text-white text-lg lg:text-xl">
+              <h2 className="mb-0 text-white text-sm xs:text-lg lg:text-xl">
                 Views: <span className="text-yellow-400">{luotXem}</span>
               </h2>
               <div className="flex space-x-4 z-0">
                 <Button
-                  className="text-white bg-slate-600 hover:bg-red-500"
+                  className="text-white bg-slate-600 hover:bg-red-500 text-xs xs:text-sm"
                   onClick={handleCourseRegister}
                 >
                   register now

@@ -9,6 +9,7 @@ import { MdDarkMode } from "react-icons/md";
 import { BsSunFill } from "react-icons/bs";
 import { setDarkMode } from "../../redux/slice/darkModeSlice";
 import CategoryInMenu from "../Category/CategoryInMenu";
+import SocialMediaInMenu from "../SocialMedia/SocialMediaInMenu";
 
 export default function HeaderMobile() {
   const [nav, setNav] = useState(false);
@@ -103,7 +104,9 @@ export default function HeaderMobile() {
             <hr />
             <CategoryInMenu nav={nav} setNav={setNav} />
             <hr />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+              <SocialMediaInMenu />
               {isdarkMode ? (
                 <BsSunFill
                   size={22}

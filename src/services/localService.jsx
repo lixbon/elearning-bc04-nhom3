@@ -24,6 +24,7 @@ const fakeUser = {
   email: "string",
   soDT: "string",
   maNhom: "GP01",
+  matKhau: "1234",
   maLoaiNguoiDung: "HV",
   hoTen: "lixbon",
   accessToken:

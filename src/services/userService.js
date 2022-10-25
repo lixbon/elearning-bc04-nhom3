@@ -4,4 +4,7 @@ export const userServ = {
     let uri = "/api/QuanLyNguoiDung/ThongTinTaiKhoan";
     return https.post(uri);
   },
+  editUserInfo: (data) => {
+    return https.put("/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", data);
+  },
 };

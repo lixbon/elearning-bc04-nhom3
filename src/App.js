@@ -14,6 +14,7 @@ import SearchPage from "./Pages/SearchPage/SearchPage";
 import SocialMedia from "./Components/SocialMedia/SocialMedia";
 import { useSelector } from "react-redux";
 import Message from "./Components/Message/Message";
+import UserSettingPage from "./Pages/UserSettingPage/UserSettingPage";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -60,6 +61,14 @@ function App() {
               element={
                 <SecureView>
                   <BaseLayout Component={MyStudyingPage} />
+                </SecureView>
+              }
+            />
+            <Route
+              path="/userinformation"
+              element={
+                <SecureView>
+                  <BaseLayout Component={UserSettingPage} />
                 </SecureView>
               }
             />

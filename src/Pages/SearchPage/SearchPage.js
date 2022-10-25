@@ -34,13 +34,15 @@ export default function SearchPage() {
     <div className="space-y-10 dark:bg-darkcolor2 relative pb-10">
       <div className="bg-gradient-to-r from-red-900 to-white">
         {" "}
-        <div className="max-w-layout mx-auto py-4">
+        <div className="max-w-mobile lg:max-w-layout mx-auto py-4">
           <h2 className="text-4xl mb-0 text-white">Search</h2>
         </div>
       </div>
-      <div className="max-w-layout mx-auto min-h-[80vh]">
+      <div className="max-w-mobile lg:max-w-layout mx-auto min-h-[80vh]">
         {isFound ? (
-          <div className="grid grid-cols-4 gap-8">{renderCourseList()}</div>
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4  lg:gap-10">
+            {renderCourseList()}
+          </div>
         ) : (
           <div>
             <h2 className="text-center text-2xl">{errorResponse}</h2>

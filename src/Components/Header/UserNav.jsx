@@ -20,6 +20,9 @@ export default function UserNav() {
   const handleGoRegister = () => {
     navigate("/register");
   };
+  const handleGoUserSetting = () => {
+    navigate("/userinformation");
+  };
   const handleLogOut = () => {
     localServ.user.remove();
 
@@ -37,11 +40,12 @@ export default function UserNav() {
           </div>
           {userpopup ? (
             <div className="absolute rounded-lg bg-white shadow-md shadow-white border-slate-900 top-12 right-0 px-10 py-4">
-              <h3 className="cursor-pointer hover:text-blue-500">
-                Information
+              <h3
+                className="cursor-pointer hover:text-blue-500"
+                onClick={handleGoUserSetting}
+              >
+                Setting
               </h3>
-              <hr />
-              <h3 className="cursor-pointer hover:text-blue-500">Setting</h3>
               <hr />
               <h3
                 className="cursor-pointer hover:text-red-500"

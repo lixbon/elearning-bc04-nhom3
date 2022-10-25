@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cybershoplogo from "../../assets/img/cyberlogo.png";
-import { FaBars } from "react-icons/fa";
 import { TfiBag } from "react-icons/tfi";
 import { MdDarkMode } from "react-icons/md";
 import { BsSunFill } from "react-icons/bs";
@@ -11,6 +10,9 @@ import HeaderMobile from "./HeaderMobile";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode } from "../../redux/slice/darkModeSlice";
+import { courseServ } from "../../services/courseService";
+import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
+import { setCategoryList } from "../../redux/slice/categorySlice";
 const { Search } = Input;
 
 export default function Header() {
@@ -46,6 +48,20 @@ export default function Header() {
   const onSearch = (value) => {
     navigate(`/search/${value}`);
   };
+  useEffect(() => {
+    dispatch(setLoadingON());
+    courseServ
+      .getCategoryList()
+      .then((res) => {
+        dispatch(setLoadingOFF());
+        dispatch(setCategoryList(res.data));
+        setCategoryList(res.data);
+      })
+      .catch((err) => {
+        dispatch(setLoadingOFF());
+        console.log(err);
+      });
+  }, []);
   return (
     <div
       className={`h-20 z-10 fixed w-full bg-gradient-to-r from-slate-900 to-gray-400 ${

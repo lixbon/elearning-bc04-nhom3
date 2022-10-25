@@ -37,7 +37,7 @@ export default function CategoryPage() {
         </div>
       </div>
       <div className="max-w-mobile lg:max-w-layout mx-auto ">
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4  lg:gap-10">
+        <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4  lg:gap-10">
           {rednerCourseList()}
         </div>
       </div>
