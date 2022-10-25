@@ -120,7 +120,9 @@ export default function MyStudyingPage() {
     <div className="min-h-[80vh] pb-10 dark:bg-darkcolor2 space-y-10 relative">
       <div className="bg-gradient-to-r from-red-900 to-white">
         <div className="max-w-mobile lg:max-w-layout mx-auto">
-          <h2 className="text-4xl mb-0 text-white  py-4">My Learning</h2>
+          <h2 className="text-xl md:text-2xl lg:text-4xl mb-0 text-white py-4">
+            My Learning
+          </h2>
         </div>
       </div>
       <div className="mx-auto max-w-mobile lg:max-w-layout">

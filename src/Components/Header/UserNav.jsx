@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { localServ } from "../../services/localService";
 import Button from "../Button/Button";
 import { FaRegUser } from "react-icons/fa";
+import { AiFillSetting } from "react-icons/ai";
 
 export default function UserNav() {
   let { user } = useSelector((state) => {
@@ -74,5 +75,49 @@ export default function UserNav() {
       );
     }
   };
-  return <div className=" space-x-3">{renderContent()}</div>;
+  let renderContentMobile = () => {
+    if (user) {
+      return (
+        <div className="flex items-center space-x-4">
+          <span className="italic underline font-semibold text-blue-500">
+            {user.hoTen}
+          </span>
+          <AiFillSetting
+            onClick={handleGoUserSetting}
+            className="cursor-pointer hover:text-blue-500"
+          />
+          <span
+            className="cursor-pointer text-base hover:text-red-500 mb-0 underline"
+            onClick={handleLogOut}
+          >
+            LogOut
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <div className="space-x-4">
+          <button
+            onClick={handleGoLoginPage}
+            className="px-4 py-2 border rounded-md hover:scale-105 duration-200 text-sm font-semibold uppercase dark:text-blue-500 z-1"
+          >
+            Login
+          </button>
+
+          <Button
+            className="bg-gradient-to-r from-slate-900 to-slate-600"
+            onClick={handleGoRegister}
+          >
+            Sign up
+          </Button>
+        </div>
+      );
+    }
+  };
+  return (
+    <div>
+      <div className="hidden lg:block space-x-3">{renderContent()}</div>
+      <div className="block lg:hidden space-x-3">{renderContentMobile()}</div>
+    </div>
+  );
 }

@@ -2,8 +2,8 @@ import React from "react";
 import { Tabs } from "antd";
 import { BiUserCircle } from "react-icons/bi";
 import { FaUserEdit } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import EditUserForm from "./EditUserForm";
+import { useSelector } from "react-redux";
 
 export default function UserSettingPage() {
   let { user } = useSelector((state) => {
@@ -12,18 +12,20 @@ export default function UserSettingPage() {
   const { taiKhoan, email, soDT, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
     user;
   return (
-    <div className="min-h-[80vh] space-y-10">
-      <div className="bg-gradient-to-r from-red-900 to-white">
-        <div className="max-w-mobile lg:max-w-layout mx-auto">
-          <h2 className="text-4xl mb-0 text-white py-4">User Information</h2>
+    <div className="min-h-[80vh] pb-10 dark:bg-darkcolor2 relative">
+      <div className="bg-gradient-to-r from-red-900 to-white z-50">
+        <div className="max-w-mobile lg:max-w-layout mx-auto z-50">
+          <h2 className="text-xl md:text-2xl lg:text-4xl mb-0 text-white py-4">
+            User Information
+          </h2>
         </div>
       </div>
       <div className="max-w-mobile lg:max-w-layout mx-auto">
-        <div className="border border-slate-800 rounded-lg px-4 pb-10">
+        <div className=" rounded-lg px-4 pb-10 glasscard">
           <Tabs defaultActiveKey="1">
             <Tabs.TabPane
               tab={
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center space-x-1 dark:text-white z-50">
                   <BiUserCircle />
                   <span>User Information</span>
                 </div>
@@ -32,34 +34,53 @@ export default function UserSettingPage() {
               label="123"
             >
               <div>
-                <h4>
-                  Account: <span className="text-red-500">{taiKhoan}</span>
+                <h4 className="dark:text-white">
+                  Account:
+                  <span className="text-red-500 dark:text-blue-500 ml-2 ">
+                    {taiKhoan}
+                  </span>
                 </h4>
-                <h4>
+                <h4 className="dark:text-white">
                   Name:
-                  <span className="text-red-500">{hoTen}</span>
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {hoTen}
+                  </span>
                 </h4>
-                <h4>
-                  Email: <span className="text-red-500">{email}</span>
+                <h4 className="dark:text-white">
+                  Email:
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {email}
+                  </span>
                 </h4>
-                <h4>
-                  PhoneNumber: <span className="text-red-500">{soDT}</span>
+                <h4 className="dark:text-white">
+                  PhoneNumber:
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {soDT}
+                  </span>
                 </h4>
-                <h4>
-                  Password: <span className="text-red-500">{matKhau}</span>
+                <h4 className="dark:text-white">
+                  Password:
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {matKhau}
+                  </span>
                 </h4>
-                <h4>
-                  Group: <span className="text-red-500">{maNhom}</span>
+                <h4 className="dark:text-white">
+                  Group:
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {maNhom}
+                  </span>
                 </h4>
-                <h4>
+                <h4 className="dark:text-white">
                   Account Type:
-                  <span className="text-red-500">{maLoaiNguoiDung}</span>
+                  <span className="text-red-500 dark:text-blue-500 ml-2">
+                    {maLoaiNguoiDung}
+                  </span>
                 </h4>
               </div>
             </Tabs.TabPane>
             <Tabs.TabPane
               tab={
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center space-x-1 dark:text-white ">
                   <FaUserEdit />
                   <span>Edit Information</span>
                 </div>

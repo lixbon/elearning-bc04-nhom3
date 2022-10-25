@@ -1,6 +1,7 @@
-import { Button, Form, Input, message, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setMessageOn } from "../../redux/slice/messageSlice";
 import { userServ } from "../../services/userService";
 
 export default function EditUserForm() {
@@ -8,17 +9,17 @@ export default function EditUserForm() {
   let { user } = useSelector((state) => {
     return state.userSlice;
   });
+  let dispatch = useDispatch();
   const { taiKhoan, email, soDT, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
     user;
   const onFinish = (values) => {
     userServ
       .editUserInfo(values)
       .then((res) => {
-        message.success("Cập nhật Người Dùng Thành Công");
-        console.log(res);
+        dispatch(setMessageOn("Update Success"));
       })
       .catch((err) => {
-        message.error(err.response.data.content);
+        dispatch(setMessageOn(err.response.data));
       });
   };
   const onFinishFailed = (errorInfo) => {
@@ -49,8 +50,9 @@ export default function EditUserForm() {
         autoComplete="off"
       >
         <div className=" p-4">
+          <h4 className="dark:text-white">Account</h4>
           <Form.Item
-            label="Account"
+            label=""
             name="taiKhoan"
             rules={[
               {
@@ -61,8 +63,11 @@ export default function EditUserForm() {
           >
             <Input disabled />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Name
+          </h4>
           <Form.Item
-            label="Name"
+            label=""
             name="hoTen"
             rules={[
               {
@@ -73,8 +78,11 @@ export default function EditUserForm() {
           >
             <Input />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Password
+          </h4>
           <Form.Item
-            label="Password"
+            label=""
             name="matKhau"
             rules={[
               {
@@ -85,8 +93,11 @@ export default function EditUserForm() {
           >
             <Input.Password />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Email
+          </h4>
           <Form.Item
-            label="Email"
+            label=""
             name="email"
             rules={[
               {
@@ -97,8 +108,11 @@ export default function EditUserForm() {
           >
             <Input />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Phone Number
+          </h4>
           <Form.Item
-            label="Phone Number"
+            label=""
             name="soDt"
             rules={[
               {
@@ -109,8 +123,11 @@ export default function EditUserForm() {
           >
             <Input />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Group
+          </h4>
           <Form.Item
-            label="Group"
+            label=""
             name="maNhom"
             rules={[
               {
@@ -121,9 +138,12 @@ export default function EditUserForm() {
           >
             <Input />
           </Form.Item>
+          <h4 className="dark:text-white">
+            <span className="text-red-500">*</span> Account Type
+          </h4>
 
           <Form.Item
-            label="Account Type"
+            label=""
             name="maLoaiNguoiDung"
             rules={[
               {

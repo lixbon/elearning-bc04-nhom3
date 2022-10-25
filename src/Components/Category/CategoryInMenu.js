@@ -17,7 +17,7 @@ export default function CategoryInMenu({ nav, setNav }) {
   });
   const renderCatalogeInMenu = () => (
     <div className="w-full">
-      <div className="flex justify-between" onClick={handleSetisOpenCategory}>
+      <div className="flex justify-between " onClick={handleSetisOpenCategory}>
         <RiArrowDropLeftLine
           size={30}
           className={
@@ -26,9 +26,13 @@ export default function CategoryInMenu({ nav, setNav }) {
             (isOpen ? "-rotate-90 text-blue-500" : "rotate-0")
           }
         />
-        <h3 className={`duration-200 ` + " " + (isOpen ? "text-blue-500" : "")}>
+        <p
+          className={
+            `duration-200 font-semibold` + " " + (isOpen ? "text-blue-500" : "")
+          }
+        >
           Category
-        </h3>
+        </p>
       </div>
 
       <div
@@ -47,7 +51,7 @@ export default function CategoryInMenu({ nav, setNav }) {
               setNav(!nav);
             }}
           >
-            <span className="text-lg group-hover:font-semibold duration-200">
+            <span className="text-sm xs:text-base group-hover:font-semibold duration-200">
               {tenDanhMuc}
             </span>
           </div>

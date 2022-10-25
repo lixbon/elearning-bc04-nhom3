@@ -89,7 +89,9 @@ export default function WatchListPage() {
     <div className="pb-10 space-y-10 min-h-[80vh] dark:bg-darkcolor2 relative">
       <div className="bg-gradient-to-r from-red-900 to-white">
         <div className="max-w-mobile lg:max-w-layout mx-auto">
-          <h2 className="text-4xl mb-0 text-white py-4">WatchList</h2>
+          <h2 className="text-xl md:text-2xl lg:text-4xl mb-0 text-white py-4">
+            WatchList
+          </h2>
         </div>
       </div>
       <div className="max-w-mobile lg:max-w-layout mx-auto">

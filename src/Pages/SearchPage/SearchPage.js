@@ -35,7 +35,9 @@ export default function SearchPage() {
       <div className="bg-gradient-to-r from-red-900 to-white">
         {" "}
         <div className="max-w-mobile lg:max-w-layout mx-auto py-4">
-          <h2 className="text-4xl mb-0 text-white">Search</h2>
+          <h2 className="text-xl md:text-2xl lg:text-4xl mb-0 text-white py-4">
+            Search
+          </h2>
         </div>
       </div>
       <div className="max-w-mobile lg:max-w-layout mx-auto min-h-[80vh]">
