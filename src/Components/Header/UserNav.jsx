@@ -33,11 +33,12 @@ export default function UserNav() {
     if (user) {
       return (
         <div className="relative">
-          <div className="flex items-center cursor-pointer text-white hover:text-slate-900 uppercase border  shadow-sm shadow-white rounded px-3 py-2 space-x-2">
+          <div
+            className="flex items-center cursor-pointer text-white hover:text-slate-900 uppercase border  shadow-sm shadow-white rounded px-3 py-2 space-x-2"
+            onClick={handleSetUserPopUp}
+          >
             <FaRegUser />
-            <span className="" onClick={handleSetUserPopUp}>
-              {user.hoTen}
-            </span>
+            <span className="">{user.hoTen}</span>
           </div>
           {userpopup ? (
             <div className="absolute rounded-lg bg-white shadow-md shadow-white border-slate-900 top-12 right-0 px-10 py-4">

@@ -14,7 +14,7 @@ export default function Category() {
   };
   const renderCatalogeList = () => {
     return (
-      <div className="w-full border border-gray-200 dark:bg-darkcolor1 dark:border-0">
+      <div className="w-full border border-gray-200 dark:bg-gradient-to-r from-darkcolor1 to-slate-700 dark:border-0">
         <div className="max-w-mobile lg:max-w-layout mx-auto h-full">
           <div className="flex justify-between ">
             {categoryList.map(({ tenDanhMuc, maDanhMuc }, index) => (

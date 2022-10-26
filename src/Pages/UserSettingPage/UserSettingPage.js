@@ -12,20 +12,20 @@ export default function UserSettingPage() {
   const { taiKhoan, email, soDT, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
     user;
   return (
-    <div className="min-h-[80vh] pb-10 dark:bg-darkcolor2 relative">
-      <div className="bg-gradient-to-r from-red-900 to-white z-50">
-        <div className="max-w-mobile lg:max-w-layout mx-auto z-50">
+    <div className="min-h-[80vh] dark:bg-darkcolor2 space-y-10 pb-10">
+      <div className="bg-gradient-to-r from-red-900 to-white">
+        <div className="max-w-mobile lg:max-w-layout mx-auto">
           <h2 className="text-xl md:text-2xl lg:text-4xl mb-0 text-white py-4">
             User Information
           </h2>
         </div>
       </div>
       <div className="max-w-mobile lg:max-w-layout mx-auto">
-        <div className=" rounded-lg px-4 pb-10 glasscard">
+        <div className=" rounded-lg px-4 pb-10 glasscard relative">
           <Tabs defaultActiveKey="1">
             <Tabs.TabPane
               tab={
-                <div className="flex items-center space-x-1 dark:text-white z-50">
+                <div className="flex items-center space-x-1 dark:text-white">
                   <BiUserCircle />
                   <span>User Information</span>
                 </div>
@@ -92,6 +92,8 @@ export default function UserSettingPage() {
           </Tabs>
         </div>
       </div>
+      <div className="hidden dark:flex absolute top-1/2 -left-32 w-96 h-96 bg-purple-400 filter blur-[150px] z-0"></div>
+      <div className="hidden dark:flex absolute top-0 right-0 w-64 h-64 bg-cyan-500 filter blur-[150px] z-0"></div>
     </div>
   );
 }
