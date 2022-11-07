@@ -7,7 +7,7 @@ export default function BaseLayout({ Component }) {
     <div className="">
       <Header />
       <Component />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

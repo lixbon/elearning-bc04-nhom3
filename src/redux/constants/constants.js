@@ -1,0 +1,8 @@
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_REGISTER = "USER_REGISTER";
+//ADMIN
+export const GET_USERLIST = "GET_USERLIST";
+export const USER_UPDATE_ADMIN = "USER_UPDATE_ADMIN";
+export const USER_DELETE = "USER_DELETE";
+export const USER_SEARCHING = "USER_SEARCHING";
+export const USER_EDIT = "USER_EDIT";
