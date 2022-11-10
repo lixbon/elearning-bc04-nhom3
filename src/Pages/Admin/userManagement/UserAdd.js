@@ -1,6 +1,5 @@
 import { Button, Form, Input, Select } from "antd";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import {
   LockOutlined,
   UserOutlined,
@@ -13,7 +12,8 @@ import { Breadcrumb, Layout, Menu } from "antd";
 
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { userAddingAction } from "../../../redux/actions/userAction";
+import { userAddingAction } from "../../../redux/actions/userActions";
+// import { userAddingAction } from "../../../redux/actions/userAction";
 
 const { Option } = Select;
 const { Header, Content, Sider } = Layout;
@@ -34,7 +34,7 @@ const formItemLayout = {
   },
 };
 
-export default function AddUser() {
+export default function UserAdd() {
   //SET UP REACT-HOOK METHOD
   let dispatch = useDispatch();
 
@@ -65,25 +65,25 @@ export default function AddUser() {
           <Menu.Item key="userList" icon={<UserOutlined />}>
             <NavLink to="/admin/userManagement">User</NavLink>
           </Menu.Item>
-          <Menu.SubMenu key="films" title="Films" icon={<FileOutlined />}>
-            <Menu.Item key="filmsItem">
-              <NavLink to="/admin/films/filmManagement">
-                Film Management
+          <Menu.SubMenu key="course" title="Courses" icon={<FileOutlined />}>
+            <Menu.Item key="courseItem">
+              <NavLink to="/admin/course/courseManagement">
+                Course Management
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="addFilm">
-              <NavLink to="/admin/films/addNewFilm">Add New</NavLink>
+            <Menu.Item key="addCourse">
+              <NavLink to="/admin/course/addNewCourse">Add New</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header
+        {/* <Header
           className="site-layout-background"
           style={{
             padding: 0,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: "0 16px",
@@ -188,9 +188,9 @@ export default function AddUser() {
                 className="text-left"
               >
                 <Select placeholder="select group code">
-                  <Option value="GP00">GP00</Option>
-                  {/* <Option value="GP01">GP01</Option>
-                  <Option value="GP02">GP02</Option> */}
+                  {/* <Option value="GP00">GP00</Option> */}
+                  <Option value="GP01">GP01</Option>
+                  {/* <Option value="GP02">GP02</Option> */}
                   {/* <Option value="GP03">GP03</Option> */}
                   {/* <Option value="GP04">GP04</Option>
                   <Option value="GP05">GP05</Option>
@@ -209,8 +209,8 @@ export default function AddUser() {
                 className="text-left"
               >
                 <Select placeholder="select user type">
-                  <Option value="KhachHang">Khách hàng</Option>
-                  <Option value="QuanTri">Quản trị</Option>
+                  <Option value="GV">Giáo Vụ</Option>
+                  <Option value="HV">Học Viên</Option>
                 </Select>
               </Form.Item>
               <Form.Item

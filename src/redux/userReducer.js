@@ -1,5 +1,6 @@
 import {
   GET_USERLIST,
+  USER_ADD,
   USER_DELETE,
   USER_EDIT,
   USER_LOGIN,
@@ -60,6 +61,10 @@ export default (state = initialState, action) => {
     }
     case USER_SEARCHING: {
       return { ...state, userSearching: action.userSearching };
+    }
+    case USER_ADD: {
+      state.userList.push(action.user);
+      return { ...state };
     }
     default:
       return { ...state };

@@ -36,7 +36,7 @@ export default function UserNav() {
         },
         {
           label:
-            user?.maLoaiNguoiDung.toUpperCase() === "QUANTRI" ? (
+            user?.maLoaiNguoiDung === "GV" ? (
               <NavLink className="font-bold sm:text-base text-sm" to="/admin">
                 Administrator
               </NavLink>
@@ -58,7 +58,7 @@ export default function UserNav() {
       return (
         <div className="space-x-5 flex items-center">
           <Dropdown overlay={menu} className="2xl:text-4xl text-3xl font-bold">
-            <Space type="button">
+            <Space className="cursor-pointer">
               <UserOutlined className="mb-2" />
               {user.hoTen}
               <ChevronDownIcon

@@ -56,4 +56,15 @@ export const userServ = {
       },
     });
   },
+  userAdd: (user) => {
+    return axios({
+      url: `${BASE_URL}/api/QuanLyNguoiDung/ThemNguoiDung`,
+      data: user,
+      method: "POST",
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get()?.accessToken,
+      },
+    });
+  },
 };

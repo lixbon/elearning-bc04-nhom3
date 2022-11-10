@@ -145,7 +145,7 @@ export default function UserSearching() {
           <Menu.Item key="userList" icon={<UserOutlined />}>
             <NavLink to="/admin/userManagement">User</NavLink>
           </Menu.Item>
-          <Menu.SubMenu key="films" title="Courses" icon={<FileOutlined />}>
+          <Menu.SubMenu key="course" title="Courses" icon={<FileOutlined />}>
             <Menu.Item key="courseItem">
               <NavLink to="/admin/course/courseManagement">
                 Course Management

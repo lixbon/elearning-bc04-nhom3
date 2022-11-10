@@ -3,6 +3,7 @@ import { localServ } from "../../services/localService";
 import { userServ } from "../../services/userService";
 import {
   GET_USERLIST,
+  USER_ADD,
   USER_DELETE,
   USER_EDIT,
   USER_LOGIN,
@@ -76,6 +77,7 @@ export const userRegisterAction = (values) => {
   };
 };
 //ADMIN
+//-Use list
 export const userListAdminAction = () => {
   return async (dispatch) => {
     try {
@@ -97,6 +99,7 @@ export const userEditAdminAction = (user) => {
     user,
   };
 };
+//-User Update
 export const userUpdateAdminAction = (values) => {
   return async (dispatch) => {
     try {
@@ -126,6 +129,7 @@ export const userUpdateAdminAction = (values) => {
     }
   };
 };
+//-User Delete
 export const userDeleteAction = (taiKhoan) => {
   return async (dispatch) => {
     try {
@@ -155,6 +159,7 @@ export const userDeleteAction = (taiKhoan) => {
     }
   };
 };
+//-User search
 export const userSearchingAction = (id) => {
   return async (dispatch) => {
     try {
@@ -167,6 +172,36 @@ export const userSearchingAction = (id) => {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+};
+//-User add
+export const userAddingAction = (user) => {
+  return async (dispatch) => {
+    try {
+      let res = await userServ.userAdd(user);
+      if (res.status === 200) {
+        await dispatch({
+          type: USER_ADD,
+          user,
+        });
+        await Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Add Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      await Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.response.data,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 };

@@ -14,8 +14,13 @@ import Error403 from "./Pages/Admin/ErrorLandingPage";
 import SecureViewAdmin from "./HOC/SecureViewAdmin";
 import AdminPage from "./Pages/Admin/AdminPage";
 import RegisterPage from "./Pages/LoginPage/RegisterPage";
-import UserListAdmin from "./Pages/Admin/userManagement/UserListAdmin";
-import UserSearching from "./Pages/Admin/userManagement/UserSearching";
+import UserListAdmin from "./Pages/Admin/UserManagement/UserListAdmin";
+import UserSearching from "./Pages/Admin/UserManagement/UserSearching";
+import CoursesList from "./Pages/Admin/CourseManagement/CoursesList";
+import CourseAddNew from "./Pages/Admin/CourseManagement/CourseAddNew";
+import UserAdd from "./Pages/Admin/UserManagement/UserAdd";
+import CourseSearching from "./Pages/Admin/CourseManagement/CourseSearching";
+import CourseStudentList from "./Pages/Admin/CourseManagement/CourseStudentList";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -96,6 +101,7 @@ function App() {
               path="/register"
               element={<BaseLayout Component={RegisterPage} />}
             />
+            {/* ADMIN - USER */}
             <Route
               path="/admin"
               element={
@@ -117,6 +123,47 @@ function App() {
               element={
                 <SecureViewAdmin>
                   <BaseLayout Component={UserSearching} />
+                </SecureViewAdmin>
+              }
+            />
+            <Route
+              path="/admin/userManagement/addUser"
+              element={
+                <SecureViewAdmin>
+                  <BaseLayout Component={UserAdd} />
+                </SecureViewAdmin>
+              }
+            />
+            {/* ADMIN - COURSE */}
+            <Route
+              path="/admin/course/courseManagement/"
+              element={
+                <SecureViewAdmin>
+                  <BaseLayout Component={CoursesList} />
+                </SecureViewAdmin>
+              }
+            />
+            <Route
+              path="/admin/course/addNewCourse"
+              element={
+                <SecureViewAdmin>
+                  <BaseLayout Component={CourseAddNew} />
+                </SecureViewAdmin>
+              }
+            />
+            <Route
+              path="/admin/course/courseManagement/search/:id"
+              element={
+                <SecureViewAdmin>
+                  <BaseLayout Component={CourseSearching} />
+                </SecureViewAdmin>
+              }
+            />
+            <Route
+              path="/admin/course/courseManagement/courseStudentList/:id"
+              element={
+                <SecureViewAdmin>
+                  <BaseLayout Component={CourseStudentList} />
                 </SecureViewAdmin>
               }
             />

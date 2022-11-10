@@ -26,25 +26,25 @@ export default function AdminPage() {
           <Menu.Item key="userList" icon={<UserOutlined />}>
             <NavLink to="/admin/userManagement">User</NavLink>
           </Menu.Item>
-          <Menu.SubMenu key="films" title="Films" icon={<FileOutlined />}>
-            <Menu.Item key="filmsItem">
-              <NavLink to="/admin/films/filmManagement">
-                Film Management
+          <Menu.SubMenu key="course" title="Course" icon={<FileOutlined />}>
+            <Menu.Item key="courseItem">
+              <NavLink to="/admin/course/courseManagement">
+                Course Management
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="addFilm">
-              <NavLink to="/admin/films/addNewFilm">Add New</NavLink>
+            <Menu.Item key="addCourse">
+              <NavLink to="/admin/course/addNewCourse">Add New</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header
+        {/* <Header
           className="site-layout-background"
           style={{
             padding: 0,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: "0 16px",

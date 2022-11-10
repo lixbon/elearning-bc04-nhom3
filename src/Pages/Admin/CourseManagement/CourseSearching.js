@@ -1,122 +1,132 @@
-import { Table, Tag, Modal, Input } from "antd";
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { BiEdit } from "react-icons/bi";
+import {
+  Space,
+  Table,
+  Tooltip,
+  Modal,
+  Breadcrumb,
+  Layout,
+  Menu,
+  Input,
+} from "antd";
+import { BiEdit, BiAlarm } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import UserEditing from "./EditUser";
 import {
-  userDeleteAction,
-  userEditAdminAction,
-  userListAdminAction,
-} from "../../../redux/actions/userActions";
-import UserEdit from "./UserEdit";
+  courseEditingAction,
+  deleteCourseAction,
+  getSearchingListAction,
+} from "../../../redux/actions/courseAction";
+import CourseEditing from "./CourseEditing";
 
 const { Search } = Input;
 const { Header, Content, Sider } = Layout;
 
-export default function UserListAdmin() {
-  //SET UP STATE, REACT-HOOK METHOD AND CALL API TO GET DATA
-  const navigate = useNavigate();
+export default function CourseSearching() {
   let dispatch = useDispatch();
+  let navigate = useNavigate();
+  let { id } = useParams();
 
   useEffect(() => {
-    dispatch(userListAdminAction());
-  }, []);
+    dispatch(getSearchingListAction(id));
+  }, [id]);
 
-  let userList = useSelector((state) => state.userReducer.userList);
+  let searchingList = useSelector((state) => state.courseReducer.searchingList);
 
-  //SET UP MODAL USER EDITING
+  //DECLARE HANDLE FUNCTION
+  const handleDeleteCourse = (maKhoaHoc) => {
+    dispatch(deleteCourseAction(maKhoaHoc));
+  };
+
+  //SET UP MODAL
   const [modal2Open, setModal2Open] = useState(false);
-  const handleUserEditing = (taiKhoan) => {
+  const handleCourseEditing = (maKhoaHoc) => {
     setModal2Open(true);
-    let index = userList.findIndex((item) => {
-      return item.taiKhoan === taiKhoan;
+    let index = searchingList.findIndex((item) => {
+      return item.maKhoaHoc === maKhoaHoc;
     });
-    dispatch(userEditAdminAction(userList[index]));
+    dispatch(courseEditingAction(searchingList[index]));
   };
 
-  //SET UP FORM COLUMNS, SEARCH INPUT, PAGINATION
-  //-Declare search input
-  const onSearch = (value) => {
-    navigate(`/admin/userManagement/search/${value}`);
-  };
+  //SET UP FORM COLUMNS
   //-Set up pagination
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
   };
-  //-Declare handle function in COLUMNS
-  const handleUserDelete = (taiKhoan) => {
-    dispatch(userDeleteAction(taiKhoan));
-  };
   //-COLUMNS
   const columns = [
     {
-      title: "Username",
-      dataIndex: "taiKhoan",
-      key: "taiKhoan",
-      sorter: (a, b) => a.taiKhoan - b.taiKhoan,
-      sortOrder: sortedInfo.columnKey === "taiKhoan" ? sortedInfo.order : null,
-      className: "xl:text-base text-[9px]",
+      title: "Course code",
+      dataIndex: "maKhoaHoc",
+      align: "center",
+      key: "maKhoaHoc",
+      sorter: (a, b) => a.maKhoaHoc - b.maKhoaHoc,
+      sortOrder: sortedInfo.columnKey === "maKhoaHoc" ? sortedInfo.order : null,
+      className: "sm:w-[110px] w-[62px] sm:text-base text-[9px]",
     },
     {
-      title: "Full name",
-      dataIndex: "hoTen",
-      key: "hoTen",
-      className: "xl:text-base text-[9px]",
+      title: "Image",
+      dataIndex: "hinhAnh",
+      render: (t, r) => <img alt="" src={`${r.hinhAnh}`} />,
+      key: "hinhAnh",
+      align: "center",
+      className: "sm:table-cell hidden sm:text-base text-[9px]",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      className: "xl:text-base text-[9px] ",
+      title: "Course title",
+      dataIndex: "tenKhoaHoc",
+      key: "tenKhoaHoc",
+      sorter: (a, b) => a.tenKhoaHoc.localeCompare(b.tenKhoaHoc),
+      sortOrder:
+        sortedInfo.columnKey === "tenKhoaHoc" ? sortedInfo.order : null,
+      align: "center",
+      className: "sm:w-2/12 w-[80px] sm:text-base text-[9px]",
     },
 
     {
-      title: "Phone Number",
-      dataIndex: "soDt",
-      key: "soDt",
-      className: "xl:text-base text-[9px] ",
-    },
-    {
-      title: "User Type",
-      dataIndex: "maLoaiNguoiDung",
-      key: "maLoaiNguoiDung",
-      className: "xl:text-base text-[9px] ",
-      render: (maLoaiNguoiDung) => {
-        var color;
-        if (maLoaiNguoiDung.toUpperCase() === "GV") {
-          color = "volcano";
-        } else {
-          color = "green";
-        }
-        return (
-          <Tag color={color} key={maLoaiNguoiDung}>
-            {maLoaiNguoiDung.toUpperCase()}
-          </Tag>
-        );
+      title: "Description",
+      dataIndex: "moTa",
+      key: "moTa",
+      align: "center",
+      ellipsis: {
+        showTitle: false,
       },
+      className: "w-4/12 sm:text-base text-[9px] ",
+      render: (moTa) => (
+        <Tooltip placement="topLeft" title={moTa}>
+          {moTa}
+        </Tooltip>
+      ),
     },
-
     {
       title: "Action",
-      dataIndex: "taiKhoan",
-      render: (taiKhoan) => {
+      dataIndex: "maKhoaHoc",
+      render: (maKhoaHoc) => {
         return (
           <div className="text-center flex justify-center ">
-            <button className="sm:mr-3 mr-1">
+            <button className="">
               <BiEdit
-                onClick={() => handleUserEditing(taiKhoan)}
+                onClick={() => {
+                  handleCourseEditing(maKhoaHoc);
+                }}
                 className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
               />
             </button>
+            {/* <button className="sm:mx-1 mx-2">
+              <BiAlarm
+                onClick={() => {
+                  handleAddCourse(maKhoaHoc);
+                }}
+                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+              />
+            </button> */}
             <button>
               <MdDelete
                 onClick={() => {
-                  handleUserDelete(taiKhoan);
+                  handleDeleteCourse(maKhoaHoc);
                 }}
                 className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
               />
@@ -126,9 +136,14 @@ export default function UserListAdmin() {
       },
       key: "hanhDong",
       align: "center",
-      className: "w-2/12 xl:text-base text-[9px]",
+      className: "sm:w-2/12 w-[61px] sm:text-base text-[9px]",
     },
   ];
+
+  //-Setup search in put
+  const onSearch = (value) => {
+    navigate(`/admin/course/courseManagement/search/${value}`);
+  };
 
   return (
     <Layout
@@ -168,14 +183,13 @@ export default function UserListAdmin() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
+        <Header
           className="site-layout-background"
           style={{
             padding: 0,
           }}
-        /> */}
+        />
         <Content
-          className=""
           style={{
             margin: "0 16px",
           }}
@@ -193,12 +207,12 @@ export default function UserListAdmin() {
             }}
           >
             <div>
-              <div className="text-2xl bold">User Management</div>
-              <NavLink to="/admin/userManagement/addUser">
-                <button className="border text-white font-bold bg-blue-500 rounded p-2 my-1">
-                  + Add New User
-                </button>
-              </NavLink>
+              <div className="text-2xl bold mb-4">Course Management</div>
+              <Space
+                style={{
+                  marginBottom: 16,
+                }}
+              ></Space>
               <Search
                 placeholder="input search text"
                 onSearch={onSearch}
@@ -206,21 +220,20 @@ export default function UserListAdmin() {
                 className="my-2"
               />
               <Table
-                className="overflow-auto"
-                rowKey="taiKhoan"
+                rowKey="maKhoaHoc"
                 columns={columns}
-                dataSource={userList}
+                dataSource={searchingList}
                 onChange={handleChange}
               />
               <Modal
-                title="User Editing"
+                title="Course Editing"
                 centered
                 visible={modal2Open}
                 onOk={() => setModal2Open(false)}
                 onCancel={() => setModal2Open(false)}
                 footer={null}
               >
-                <UserEdit setModal2Open={setModal2Open} />
+                <CourseEditing setModal2Open={setModal2Open} />
               </Modal>
             </div>
           </div>

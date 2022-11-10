@@ -1,56 +1,47 @@
-import { Table, Tag, Modal, Input } from "antd";
+import { Table } from "antd";
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { BiEdit } from "react-icons/bi";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-// import UserEditing from "./EditUser";
 import {
-  userDeleteAction,
-  userEditAdminAction,
-  userListAdminAction,
-} from "../../../redux/actions/userActions";
-import UserEdit from "./UserEdit";
+  cancelRegisterCourseAction,
+  getCourseInfoAction,
+  getCourseStudentListAction,
+} from "../../../redux/actions/courseAction";
 
-const { Search } = Input;
 const { Header, Content, Sider } = Layout;
 
-export default function UserListAdmin() {
+export default function CourseStudentList() {
   //SET UP STATE, REACT-HOOK METHOD AND CALL API TO GET DATA
   const navigate = useNavigate();
   let dispatch = useDispatch();
+  let { id } = useParams();
 
   useEffect(() => {
-    dispatch(userListAdminAction());
-  }, []);
+    dispatch(getCourseInfoAction(id));
+    dispatch(getCourseStudentListAction(id));
+  }, [id]);
 
-  let userList = useSelector((state) => state.userReducer.userList);
-
-  //SET UP MODAL USER EDITING
-  const [modal2Open, setModal2Open] = useState(false);
-  const handleUserEditing = (taiKhoan) => {
-    setModal2Open(true);
-    let index = userList.findIndex((item) => {
-      return item.taiKhoan === taiKhoan;
-    });
-    dispatch(userEditAdminAction(userList[index]));
-  };
+  let courseStudentList = useSelector(
+    (state) => state.courseReducer.courseStudentList
+  );
+  let courseInfo = useSelector((state) => state.courseReducer.courseInfo);
 
   //SET UP FORM COLUMNS, SEARCH INPUT, PAGINATION
-  //-Declare search input
-  const onSearch = (value) => {
-    navigate(`/admin/userManagement/search/${value}`);
-  };
   //-Set up pagination
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
   };
   //-Declare handle function in COLUMNS
-  const handleUserDelete = (taiKhoan) => {
-    dispatch(userDeleteAction(taiKhoan));
+  const handleCancelRegisterCourse = (taiKhoan) => {
+    let dataCancelCourse = {
+      maKhoaHoc: courseInfo.maKhoaHoc,
+      taiKhoan: taiKhoan,
+    };
+    dispatch(cancelRegisterCourseAction(dataCancelCourse));
   };
   //-COLUMNS
   const columns = [
@@ -68,38 +59,6 @@ export default function UserListAdmin() {
       key: "hoTen",
       className: "xl:text-base text-[9px]",
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      className: "xl:text-base text-[9px] ",
-    },
-
-    {
-      title: "Phone Number",
-      dataIndex: "soDt",
-      key: "soDt",
-      className: "xl:text-base text-[9px] ",
-    },
-    {
-      title: "User Type",
-      dataIndex: "maLoaiNguoiDung",
-      key: "maLoaiNguoiDung",
-      className: "xl:text-base text-[9px] ",
-      render: (maLoaiNguoiDung) => {
-        var color;
-        if (maLoaiNguoiDung.toUpperCase() === "GV") {
-          color = "volcano";
-        } else {
-          color = "green";
-        }
-        return (
-          <Tag color={color} key={maLoaiNguoiDung}>
-            {maLoaiNguoiDung.toUpperCase()}
-          </Tag>
-        );
-      },
-    },
 
     {
       title: "Action",
@@ -107,16 +66,10 @@ export default function UserListAdmin() {
       render: (taiKhoan) => {
         return (
           <div className="text-center flex justify-center ">
-            <button className="sm:mr-3 mr-1">
-              <BiEdit
-                onClick={() => handleUserEditing(taiKhoan)}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
-              />
-            </button>
             <button>
               <MdDelete
                 onClick={() => {
-                  handleUserDelete(taiKhoan);
+                  handleCancelRegisterCourse(taiKhoan);
                 }}
                 className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
               />
@@ -184,7 +137,11 @@ export default function UserListAdmin() {
             style={{
               margin: "16px 0",
             }}
-          ></Breadcrumb>
+          >
+            <NavLink to="/admin/course/courseManagement">
+              Course Management
+            </NavLink>
+          </Breadcrumb>
           <div
             className="site-layout-background"
             style={{
@@ -193,35 +150,28 @@ export default function UserListAdmin() {
             }}
           >
             <div>
-              <div className="text-2xl bold">User Management</div>
-              <NavLink to="/admin/userManagement/addUser">
-                <button className="border text-white font-bold bg-blue-500 rounded p-2 my-1">
-                  + Add New User
-                </button>
-              </NavLink>
-              <Search
-                placeholder="input search text"
-                onSearch={onSearch}
-                enterButton
-                className="my-2"
-              />
-              <Table
-                className="overflow-auto"
-                rowKey="taiKhoan"
-                columns={columns}
-                dataSource={userList}
-                onChange={handleChange}
-              />
-              <Modal
-                title="User Editing"
-                centered
-                visible={modal2Open}
-                onOk={() => setModal2Open(false)}
-                onCancel={() => setModal2Open(false)}
-                footer={null}
-              >
-                <UserEdit setModal2Open={setModal2Open} />
-              </Modal>
+              <div className="text-2xl bold mb-10">Course Infomation</div>
+              <div className="w-full flex">
+                <div className="w-1/3">
+                  <span className="bold sm:text-xl text-sm">
+                    {courseInfo.tenKhoaHoc}
+                  </span>
+                  <span className="">
+                    <img
+                      src={courseInfo.hinhAnh}
+                      alt="..."
+                      className="object-contain pr-4 my-3"
+                    />
+                  </span>
+                </div>
+                <Table
+                  className="overflow-auto w-2/3"
+                  rowKey="taiKhoan"
+                  columns={columns}
+                  dataSource={courseStudentList}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
         </Content>
