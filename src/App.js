@@ -15,10 +15,10 @@ import SecureViewAdmin from "./HOC/SecureViewAdmin";
 import AdminPage from "./Pages/Admin/AdminPage";
 import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import UserListAdmin from "./Pages/Admin/UserManagement/UserListAdmin";
+import UserAdd from "./Pages/Admin/UserManagement/UserAdd";
 import UserSearching from "./Pages/Admin/UserManagement/UserSearching";
 import CoursesList from "./Pages/Admin/CourseManagement/CoursesList";
 import CourseAddNew from "./Pages/Admin/CourseManagement/CourseAddNew";
-import UserAdd from "./Pages/Admin/UserManagement/UserAdd";
 import CourseSearching from "./Pages/Admin/CourseManagement/CourseSearching";
 import CourseStudentList from "./Pages/Admin/CourseManagement/CourseStudentList";
 
