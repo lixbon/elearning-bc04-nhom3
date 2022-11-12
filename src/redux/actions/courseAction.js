@@ -69,16 +69,18 @@ export const courseEditingAction = (courseEditing) => {
   };
 };
 //Update
-export const updateCourseAdminAction = (formData) => {
+export const updateCourseAdminAction = (formData, id) => {
   return async (dispatch) => {
     try {
       let res1 = await courseServ.updateCourseAdmin(formData);
       if (res1.status === 200) {
         let res2 = await courseServ.courseList();
-        if (res2.status === 200) {
+        let res3 = await courseServ.getSearchingList(id);
+        if (res2.status === 200 && res3.status === 200) {
           await dispatch({
             type: UPDATE_COURSE_ADMIN,
             courseList: res2.data,
+            searchingList: res3.data,
           });
           await Swal.fire({
             position: "center",

@@ -38,7 +38,11 @@ export default (state = initialState, action) => {
       return { ...state, courseEditing: action.courseEditing };
     }
     case UPDATE_COURSE_ADMIN: {
-      return { ...state, courseList: action.courseList };
+      return {
+        ...state,
+        courseList: action.courseList,
+        searchingList: action.searchingList,
+      };
     }
     case ADD_NEW_COURSE: {
       return { ...state, courseList: action.courseList };

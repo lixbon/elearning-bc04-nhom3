@@ -8,6 +8,7 @@ import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
 import { updateCourseAdminAction } from "../../../redux/actions/courseAction";
 import { GROUP_CODE } from "../../../services/configURL";
+import { useParams } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -29,6 +30,7 @@ export default function CourseEditing({ setModalEditing }) {
   //SET UP REACT-HOOK METHOD
   let dispatch = useDispatch();
   let courseEditing = useSelector((state) => state.courseReducer.courseEditing);
+  let { id } = useParams();
   //SET UP FORMIK TO FORM
   //-Set up Form
   const [form] = Form.useForm();
@@ -76,6 +78,7 @@ export default function CourseEditing({ setModalEditing }) {
       taiKhoanNguoiTao: courseEditing?.nguoiTao.taiKhoan,
     },
     onSubmit: async (values) => {
+      let idSearching = id;
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
@@ -86,7 +89,7 @@ export default function CourseEditing({ setModalEditing }) {
           }
         }
       }
-      await dispatch(updateCourseAdminAction(formData));
+      await dispatch(updateCourseAdminAction(formData, idSearching));
       setModalEditing(false);
     },
   });

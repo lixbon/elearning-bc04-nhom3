@@ -210,12 +210,12 @@ export default function CourseSearching() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header
+        {/* <Header
           className="site-layout-background"
           style={{
             padding: 0,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: "0 16px",
@@ -225,7 +225,11 @@ export default function CourseSearching() {
             style={{
               margin: "16px 0",
             }}
-          ></Breadcrumb>
+          >
+            <NavLink to="/admin/course/courseManagement">
+              Course Management
+            </NavLink>
+          </Breadcrumb>
           <div
             className="site-layout-background"
             style={{
