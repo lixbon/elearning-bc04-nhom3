@@ -18,9 +18,9 @@ import CoursesList from "./Pages/Admin/CourseManagement/CoursesList";
 import CourseAddNew from "./Pages/Admin/CourseManagement/CourseAddNew";
 import CourseSearching from "./Pages/Admin/CourseManagement/CourseSearching";
 import CourseStudentList from "./Pages/Admin/CourseManagement/CourseStudentList";
-import UserListAdmin from "./Pages/Admin/UserManagement/UserListAdmin";
-import UserSearching from "./Pages/Admin/UserManagement/UserSearching";
-import UserAdd from "./Pages/Admin/UserManagement/UserAdd";
+import UserListAdmin from "./Pages/Admin/UserManagement1/UserListAdmin";
+import UserSearching from "./Pages/Admin/UserManagement1/UserSearching";
+import UserAdd from "./Pages/Admin/UserManagement1/UserAdd";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();

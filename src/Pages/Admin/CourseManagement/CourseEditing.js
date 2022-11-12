@@ -209,7 +209,7 @@ export default function CourseEditing({ setModalEditing }) {
         {/* {imgSrc !== "" ? (
            <img className="mt-4 w-[150px] h-[250px]" src={imgSrc} alt="..." />
          ) : ( */}
-        <img className="mt-4 w-[150px] h-[150px]" src={imgSrc} alt="..." />
+        <img className="mt-4 object-contain" src={imgSrc} alt="..." />
         {/* )} */}
       </Form.Item>
       <Form.Item
