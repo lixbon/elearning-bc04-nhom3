@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import bg_login from "../../assets/img/bg.login.json";
 import { userRegisterAction } from "../../redux/actions/userActions";
+import { GROUP_CODE } from "../../services/configURL";
 
 const formItemLayout = {
   labelCol: {
@@ -36,7 +37,7 @@ export default function RegisterPage() {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    values = { ...values, maNhom: "GP01" };
+    values = { ...values, maNhom: GROUP_CODE };
     dispatch(userRegisterAction(values));
   };
 

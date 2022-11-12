@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
 import { updateCourseAdminAction } from "../../../redux/actions/courseAction";
+import { GROUP_CODE } from "../../../services/configURL";
 
 const formItemLayout = {
   labelCol: {
@@ -24,7 +25,7 @@ const formItemLayout = {
   },
 };
 
-export default function CourseEditing(setModal2Open) {
+export default function CourseEditing({ setModalEditing }) {
   //SET UP REACT-HOOK METHOD
   let dispatch = useDispatch();
   let courseEditing = useSelector((state) => state.courseReducer.courseEditing);
@@ -69,7 +70,7 @@ export default function CourseEditing(setModal2Open) {
       luotXem: courseEditing?.luotXem,
       danhGia: courseEditing?.danhGia,
       hinhAnh: null,
-      maNhom: "gp03",
+      maNhom: GROUP_CODE,
       ngayTao: courseEditing?.ngayTao,
       maDanhMucKhoahoc: courseEditing?.danhMucKhoaHoc.maDanhMucKhoahoc,
       taiKhoanNguoiTao: courseEditing?.nguoiTao.taiKhoan,
@@ -85,11 +86,8 @@ export default function CourseEditing(setModal2Open) {
           }
         }
       }
-      console.log("values", values);
-      // console.log(formData.get("File"));
-
       await dispatch(updateCourseAdminAction(formData));
-      setModal2Open(false);
+      setModalEditing(false);
     },
   });
 
@@ -113,7 +111,7 @@ export default function CourseEditing(setModal2Open) {
         ]}
       >
         <Input
-          //   disabled
+          disabled
           name="maKhoaHoc"
           onChange={formik.handleChange}
           //   prefix={<VideoCameraAddOutlined className="site-form-item-icon" />}
@@ -132,6 +130,7 @@ export default function CourseEditing(setModal2Open) {
         ]}
       >
         <Input
+          disabled
           name="biDanh"
           onChange={formik.handleChange}
           //   prefix={<LinkOutlined className="site-form-item-icon" />}
@@ -225,7 +224,7 @@ export default function CourseEditing(setModal2Open) {
           name="maNhom"
           onChange={formik.handleChange}
           //   prefix={<VideoCameraAddOutlined className="site-form-item-icon" />}
-          placeholder="gp03"
+          placeholder={`${GROUP_CODE}`}
         />
       </Form.Item>
       <Form.Item label="Creation date:">

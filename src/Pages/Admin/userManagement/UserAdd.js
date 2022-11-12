@@ -13,7 +13,6 @@ import { Breadcrumb, Layout, Menu } from "antd";
 import { NavLink } from "react-router-dom";
 import React from "react";
 import { userAddingAction } from "../../../redux/actions/userActions";
-// import { userAddingAction } from "../../../redux/actions/userAction";
 
 const { Option } = Select;
 const { Header, Content, Sider } = Layout;

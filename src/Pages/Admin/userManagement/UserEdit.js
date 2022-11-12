@@ -9,6 +9,7 @@ import {
 import { Button, Form, Input, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { userUpdateAdminAction } from "../../../redux/actions/userActions";
+import { GROUP_CODE } from "../../../services/configURL";
 
 const { Option } = Select;
 const formItemLayout = {
@@ -39,7 +40,7 @@ export default function UserEdit({ setModal2Open }) {
     soDt: userEdit.soDt,
     hoTen: userEdit.hoTen,
     maLoaiNguoiDung: userEdit.maLoaiNguoiDung,
-    maNhom: "GP01",
+    maNhom: GROUP_CODE,
   });
   //-Setup submit form
 

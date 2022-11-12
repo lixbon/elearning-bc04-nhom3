@@ -10,6 +10,7 @@ import {
   GET_COURSE_INFO,
   GET_COURSE_STUDENT_LIST,
   GET_SEARCHING_LIST,
+  REGISTER_COURSE_STUDENT,
   UPDATE_COURSE_ADMIN,
 } from "../constants/constants";
 
@@ -154,7 +155,6 @@ export const getSearchingListAction = (id) => {
   return async (dispatch) => {
     try {
       let res = await courseServ.getSearchingList(id);
-      console.log("res: ", res);
       if (res.status === 200) {
         await dispatch({
           type: GET_SEARCHING_LIST,
@@ -218,6 +218,39 @@ export const cancelRegisterCourseAction = (dataCancelCourse) => {
           timer: 1500,
         });
       }
+    } catch (err) {
+      console.log(err);
+      await Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.response.data,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+};
+export const registerCourseForStudentAction = (form) => {
+  return async (dispatch) => {
+    try {
+      let res1 = await courseServ.registerCourseForStudent(form);
+      if (res1.status === 200) {
+        let res2 = await courseServ.getCourseStudentList(form.maKhoaHoc);
+        if (res2.status === 200) {
+          await dispatch({
+            type: REGISTER_COURSE_STUDENT,
+            courseStudentList: res2.data.lstHocVien,
+          });
+        }
+        console.log("res2: ", res2);
+      }
+      await Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Add Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (err) {
       console.log(err);
       await Swal.fire({

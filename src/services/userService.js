@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, https, TOKEN_CYBERSOFT } from "./configURL";
+import { BASE_URL, GROUP_CODE, https, TOKEN_CYBERSOFT } from "./configURL";
 import { localServ } from "./localService";
 
 export const userServ = {
@@ -24,7 +24,7 @@ export const userServ = {
     });
   },
   userListAdmin: () => {
-    let uri = `${BASE_URL}/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`;
+    let uri = `${BASE_URL}/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_CODE}`;
     return https.get(uri);
   },
   userDeleteAdmin: (taiKhoan) => {
@@ -43,7 +43,7 @@ export const userServ = {
     });
   },
   userSearchingAdmin: (id) => {
-    let uri = `${BASE_URL}/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${id}`;
+    let uri = `${BASE_URL}/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${GROUP_CODE}&tuKhoa=${id}`;
     return https.get(uri);
   },
   userInfoAdmin: () => {

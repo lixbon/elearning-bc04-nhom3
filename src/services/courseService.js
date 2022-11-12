@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BASE_URL, https, TOKEN_CYBERSOFT } from "./configURL";
+import { BASE_URL, GROUP_CODE, https, TOKEN_CYBERSOFT } from "./configURL";
 import { localServ } from "./localService";
 
 export const courseServ = {
   courseList: () => {
-    let uri = `${BASE_URL}/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01`;
+    let uri = `${BASE_URL}/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GROUP_CODE}`;
     return https.get(uri);
   },
   deleteCourse: (maKhoaHoc) => {
@@ -43,7 +43,7 @@ export const courseServ = {
   },
   getSearchingList: (id) => {
     return axios({
-      url: `${BASE_URL}/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${id}&MaNhom=GP03`,
+      url: `${BASE_URL}/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${id}&MaNhom=${GROUP_CODE}`,
       method: "GET",
       headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
@@ -65,6 +65,17 @@ export const courseServ = {
   cancelRegisterCourse: (data) => {
     return axios({
       url: `${BASE_URL}/api/QuanLyKhoaHoc/HuyGhiDanh`,
+      data,
+      method: "POST",
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get()?.accessToken,
+      },
+    });
+  },
+  registerCourseForStudent: (data) => {
+    return axios({
+      url: `${BASE_URL}/api/QuanLyKhoaHoc/GhiDanhKhoaHoc`,
       data,
       method: "POST",
       headers: {

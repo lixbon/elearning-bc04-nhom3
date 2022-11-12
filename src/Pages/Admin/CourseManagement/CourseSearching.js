@@ -9,7 +9,7 @@ import {
   Menu,
   Input,
 } from "antd";
-import { BiEdit, BiAlarm } from "react-icons/bi";
+import { BiEdit, BiUser, BiPlusCircle } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
@@ -20,6 +20,7 @@ import {
   getSearchingListAction,
 } from "../../../redux/actions/courseAction";
 import CourseEditing from "./CourseEditing";
+import CourseRegisterStudentModal from "./CourseRegisterStudentModal";
 
 const { Search } = Input;
 const { Header, Content, Sider } = Layout;
@@ -40,10 +41,28 @@ export default function CourseSearching() {
     dispatch(deleteCourseAction(maKhoaHoc));
   };
 
+  const handleCourseStudentList = (maKhoaHoc) => {
+    let index = searchingList.findIndex((item) => {
+      return item.maKhoaHoc === maKhoaHoc;
+    });
+    dispatch(courseEditingAction(searchingList[index]));
+    navigate(`/admin/course/courseManagement/courseStudentList/${maKhoaHoc}`);
+  };
+
   //SET UP MODAL
-  const [modal2Open, setModal2Open] = useState(false);
+  const [modalEditing, setModalEditing] = useState(false);
+  const [modalRegisterCourse, setModalRegisterCourse] = useState(false);
+
   const handleCourseEditing = (maKhoaHoc) => {
-    setModal2Open(true);
+    setModalEditing(true);
+    let index = searchingList.findIndex((item) => {
+      return item.maKhoaHoc === maKhoaHoc;
+    });
+    dispatch(courseEditingAction(searchingList[index]));
+  };
+
+  const handleRegisterCourseForStudent = (maKhoaHoc) => {
+    setModalRegisterCourse(true);
     let index = searchingList.findIndex((item) => {
       return item.maKhoaHoc === maKhoaHoc;
     });
@@ -115,14 +134,22 @@ export default function CourseSearching() {
                 className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
               />
             </button>
-            {/* <button className="sm:mx-1 mx-2">
-              <BiAlarm
+            <button>
+              <BiPlusCircle
                 onClick={() => {
-                  handleAddCourse(maKhoaHoc);
+                  handleRegisterCourseForStudent(maKhoaHoc);
                 }}
                 className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
               />
-            </button> */}
+            </button>
+            <button>
+              <BiUser
+                onClick={() => {
+                  handleCourseStudentList(maKhoaHoc);
+                }}
+                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+              />
+            </button>
             <button>
               <MdDelete
                 onClick={() => {
@@ -228,14 +255,26 @@ export default function CourseSearching() {
               <Modal
                 title="Course Editing"
                 centered
-                visible={modal2Open}
-                onOk={() => setModal2Open(false)}
-                onCancel={() => setModal2Open(false)}
+                visible={modalEditing}
+                onOk={() => setModalEditing(false)}
+                onCancel={() => setModalEditing(false)}
                 footer={null}
               >
-                <CourseEditing setModal2Open={setModal2Open} />
+                <CourseEditing setModalEditing={setModalEditing} />
               </Modal>
             </div>
+            <Modal
+              title="Course Register For Student"
+              centered
+              visible={modalRegisterCourse}
+              onOk={() => setModalRegisterCourse(false)}
+              onCancel={() => setModalRegisterCourse(false)}
+              footer={null}
+            >
+              <CourseRegisterStudentModal
+                setModalRegisterCourse={setModalRegisterCourse}
+              />
+            </Modal>
           </div>
         </Content>
       </Layout>

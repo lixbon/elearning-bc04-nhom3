@@ -15,6 +15,7 @@ import {
   addNewCourseAction,
   getCourseCatagoryAction,
 } from "../../../redux/actions/courseAction";
+import { GROUP_CODE } from "../../../services/configURL";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;
@@ -50,6 +51,43 @@ export default function CourseAddNew() {
   //-Set FieldValue for Image
   const [imgSrc, setImgSrc] = useState("");
 
+  //-Set up Formik and submit
+  const formik = useFormik({
+    initialValues: {
+      maKhoaHoc: "",
+      biDanh: "",
+      tenKhoaHoc: "",
+      moTa: "",
+      luotXem: 0,
+      danhGia: 1,
+      hinhAnh: null,
+      maNhom: GROUP_CODE,
+      ngayTao: "",
+      maDanhMucKhoaHoc: "",
+      taiKhoanNguoiTao: "admin",
+    },
+    onSubmit: (values) => {
+      let formData = new FormData();
+      for (let key in values) {
+        if (key !== "hinhAnh") {
+          formData.append(key, values[key]);
+        } else {
+          if (values.hinhAnh !== null) {
+            // let index = values.hinhAnh.name.lastIndexOf(".");
+            // let fileExtensionPart = values.hinhAnh.name.slice(
+            //   index,
+            //   values.hinhAnh.name.length
+            // );
+            // let fileNamePart = values.hinhAnh.slice(0, index);
+            // let newFileName = `${fileNamePart}${values.hinhAnh.lastModified}${fileExtensionPart}`;
+            formData.append("File", values.hinhAnh, values.hinhAnh.name);
+          }
+        }
+      }
+      dispatch(addNewCourseAction(formData));
+    },
+  });
+
   const handleChangeFileUpload = (e) => {
     let file = e.target.files[0];
     let reader = new FileReader();
@@ -59,6 +97,7 @@ export default function CourseAddNew() {
     };
     formik.setFieldValue("hinhAnh", file);
   };
+
   //-Set FieldValue for Datepicker
   const handleChangeDatepicker = (value) => {
     let ngayTao = moment(value).format("DD/MM/YYYY");
@@ -76,37 +115,6 @@ export default function CourseAddNew() {
       formik.setFieldValue(name, value);
     };
   };
-  //-Set up Formik and submit
-  const formik = useFormik({
-    initialValues: {
-      maKhoaHoc: "",
-      biDanh: "",
-      tenKhoaHoc: "",
-      moTa: "",
-      luotXem: 0,
-      danhGia: 1,
-      hinhAnh: null,
-      maNhom: "gp03",
-      ngayTao: "",
-      maDanhMucKhoaHoc: "",
-      taiKhoanNguoiTao: "admin",
-    },
-    onSubmit: (values) => {
-      let formData = new FormData();
-      for (let key in values) {
-        if (key !== "hinhAnh") {
-          formData.append(key, values[key]);
-        } else {
-          if (values.hinhAnh !== null) {
-            formData.append("File", values.hinhAnh, values.hinhAnh.name);
-          }
-        }
-      }
-      console.log("values", values);
-      console.log("formData", formData.get("hinhAnh"));
-      dispatch(addNewCourseAction(formData));
-    },
-  });
 
   const renderCourseCata = () => {
     return courseCata.map((item, index) => {
@@ -297,10 +305,14 @@ export default function CourseAddNew() {
                   />
                 </Form.Item>
                 <Form.Item name="hinhAnh" label="Image:">
-                  <Input type="file" onChange={handleChangeFileUpload} />
+                  <Input
+                    accept=".png, .jpg, .jpeg"
+                    type="file"
+                    onChange={handleChangeFileUpload}
+                  />
                   {imgSrc !== "" ? (
                     <img
-                      className="mt-4 w-[150px] h-[250px]"
+                      className="mt-4 object-contain"
                       src={imgSrc}
                       alt="..."
                     />
@@ -323,7 +335,7 @@ export default function CourseAddNew() {
                     name="maNhom"
                     onChange={formik.handleChange}
                     //   prefix={<VideoCameraAddOutlined className="site-form-item-icon" />}
-                    placeholder="gp03"
+                    placeholder={GROUP_CODE}
                   />
                 </Form.Item>
                 <Form.Item name="ngayTao" label="Creation date:">

@@ -8,6 +8,7 @@ import {
   GET_COURSE_INFO,
   GET_COURSE_STUDENT_LIST,
   GET_SEARCHING_LIST,
+  REGISTER_COURSE_STUDENT,
   UPDATE_COURSE_ADMIN,
 } from "./constants/constants";
 
@@ -62,6 +63,9 @@ export default (state = initialState, action) => {
       });
       cloneCourseStudentList.splice(index, 1);
       return { ...state, courseStudentList: cloneCourseStudentList };
+    }
+    case REGISTER_COURSE_STUDENT: {
+      return { ...state, courseStudentList: action.courseStudentList };
     }
     default:
       return { ...state };
