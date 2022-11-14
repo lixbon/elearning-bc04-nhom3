@@ -1,4 +1,6 @@
-import { https } from "./configURL";
+import axios from "axios";
+import { BASE_URL, https, TOKEN_CYBERSOFT } from "./configURL";
+import { localServ } from "./localService";
 
 export const courseServ = {
   getCategoryList: () => {
@@ -22,11 +24,25 @@ export const courseServ = {
     return https.get(uri);
   },
   postCourseRegister: (data) => {
-    let uri = "/api/QuanLyKhoaHoc/DangKyKhoaHoc";
-    return https.post(uri, data);
+    return axios({
+      url: `${BASE_URL}/api/QuanLyKhoaHoc/DangKyKhoaHoc`,
+      method: "POST",
+      data: data,
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get().accessToken,
+      },
+    });
   },
   postCourseRemove: (data) => {
-    let uri = "/api/QuanLyKhoaHoc/HuyGhiDanh";
-    return https.post(uri, data);
+    return axios({
+      url: `${BASE_URL}/api/QuanLyKhoaHoc/HuyGhiDanh`,
+      method: "POST",
+      data: data,
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get().accessToken,
+      },
+    });
   },
 };

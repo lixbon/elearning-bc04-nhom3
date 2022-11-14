@@ -1,10 +1,27 @@
-import { https } from "./configURL";
+import axios from "axios";
+import { BASE_URL, https, TOKEN_CYBERSOFT } from "./configURL";
+import { localServ } from "./localService";
+
 export const userServ = {
   getUserInfo: () => {
-    let uri = "/api/QuanLyNguoiDung/ThongTinTaiKhoan";
-    return https.post(uri);
+    return axios({
+      url: `${BASE_URL}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
+      method: "POST",
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get().accessToken,
+      },
+    });
   },
   editUserInfo: (data) => {
-    return https.put("/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", data);
+    return axios({
+      url: `${BASE_URL}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      method: "PUT",
+      data: data,
+      headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + localServ.user.get().accessToken,
+      },
+    });
   },
 };
