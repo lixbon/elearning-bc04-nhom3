@@ -9,6 +9,7 @@ import HomePage from "./Pages/HomePage/HomePage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import "antd/dist/antd.min.css";
+import Message from "./Components/Message/Message";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
   return (
     <div>
       <Loading />
+      <Message />
       <BrowserRouter>
         <Wrapper>
           <Routes>

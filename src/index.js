@@ -5,10 +5,12 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import loadingSlice from "./redux/slice/loadingSlice";
+import messageSlice from "./redux/slice/messageSlice";
 
 const store = configureStore({
   reducer: {
     loadingSlice,
+    messageSlice,
   },
   devTools: true,
 });

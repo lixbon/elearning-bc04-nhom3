@@ -1,11 +1,12 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userServ } from "../../services/userService";
 import { setUserInfor } from "../../redux/slice/userSlice";
 import { localServ } from "../../services/localService";
 import Style from "./Login.module.css";
+import { setMessageOn } from "../../redux/slice/messageSlice";
 
 export default function LoginPage() {
   let navigate = useNavigate();
@@ -16,11 +17,12 @@ export default function LoginPage() {
       .postLogin(values)
       .then((res) => {
         dispatch(setUserInfor(res.data));
+        dispatch(setMessageOn("Login Success"));
         localServ.user.set(res.data);
         navigate("/");
       })
       .catch((err) => {
-        console.log(err);
+        dispatch(setMessageOn(err.response.data));
       });
   };
 
@@ -29,7 +31,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-red-100">
+    <div className="">
       <div className="max-w-layout mx-auto min-h-[75vh] flex items-center justify-center ">
         <div className="w-1/2 h-full flex items-center justify-center">
           <Form
@@ -81,10 +83,16 @@ export default function LoginPage() {
                   className="space-y-4 py-4
             "
                 >
-                  <div className="justify-center items-center flex">
+                  <div className="justify-center items-center flex flex-col">
                     <Button type="primary" htmlType="submit">
                       Login
                     </Button>
+                    <h3 className="my-3">
+                      If you don't have an account, please{" "}
+                      <NavLink to="/register">
+                        <span>Register</span>
+                      </NavLink>
+                    </h3>
                   </div>
                 </div>
               </Form.Item>

@@ -1,22 +1,27 @@
 import React from "react";
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Style from "./register.module.css";
+import { userServ } from "../../services/userService";
+import { setUserInfor } from "../../redux/slice/userSlice";
+import { setMessageOn } from "../../redux/slice/messageSlice";
+import { Option } from "antd/lib/mentions";
 
 export default function RegisterPage() {
   let navigate = useNavigate();
   let dispatch = useDispatch();
   const onFinish = (values) => {
-    let onSuccess = () => {
-      message.success("Đăng kí tài khoản Thành Công");
-      setTimeout(() => {
+    userServ
+      .postRegister(values)
+      .then((res) => {
+        dispatch(setUserInfor(res.data));
+        dispatch(setMessageOn("Register Success"));
         navigate("/login");
-      }, 2000);
-    };
-    let onFail = (reason) => {
-      message.error(reason);
-    };
+      })
+      .catch((err) => {
+        dispatch(setMessageOn(err.response.data));
+      });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -43,7 +48,7 @@ export default function RegisterPage() {
         >
           <div className="p-4">
             <Form.Item
-              label="Tài Khoản"
+              label="Account"
               name="taiKhoan"
               rules={[
                 {
@@ -56,7 +61,7 @@ export default function RegisterPage() {
             </Form.Item>
 
             <Form.Item
-              label="Mật Khẩu"
+              label="Password"
               name="matKhau"
               rules={[
                 {
@@ -69,7 +74,7 @@ export default function RegisterPage() {
             </Form.Item>
 
             <Form.Item
-              label="Tên"
+              label="Name"
               name="hoTen"
               rules={[
                 {
@@ -93,7 +98,7 @@ export default function RegisterPage() {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Số Điện Thoại"
+              label="Phone Number"
               name="soDt"
               rules={[
                 {
@@ -103,6 +108,32 @@ export default function RegisterPage() {
               ]}
             >
               <Input />
+            </Form.Item>
+            <h4 className="dark:text-white">
+              <span className="text-red-500">*</span> Group (GP01-&gt; GP05)
+            </h4>
+            <Form.Item
+              label=""
+              name="maNhom"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select your Group!",
+                },
+              ]}
+            >
+              <Select
+                style={{
+                  width: 120,
+                }}
+                defaultValue="--Select--"
+              >
+                <Option value="GP01">GP01</Option>
+                <Option value="GP02">GP02</Option>
+                <Option value="GP03">GP03</Option>
+                <Option value="GP04">GP04</Option>
+                <Option value="GP05">GP05</Option>
+              </Select>
             </Form.Item>
 
             <Form.Item
@@ -116,14 +147,14 @@ export default function RegisterPage() {
               >
                 <div className="justify-center items-center flex">
                   <Button type="primary" htmlType="submit">
-                    Đăng Ký
+                    Register
                   </Button>
                 </div>
 
-                <h3 className="text-center text-white">
-                  Nếu bạnh đã có tài khoản, vui lòng{" "}
+                <h3 className="text-center">
+                  If you have an account, please{" "}
                   <NavLink to="/login">
-                    <span>Đăng Nhập</span>
+                    <span>Login</span>
                   </NavLink>
                 </h3>
               </div>
