@@ -30,7 +30,7 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-layout mx-auto min-h-[75vh] flex items-center justify-center">
-      <div className="w-1/2 h-full flex items-center justify-center">
+      <div className="w-full lg:w-1/2 h-full flex items-center justify-center">
         <Form
           className={`${Style["cardglass"]} w-full`}
           layout="vertical"
