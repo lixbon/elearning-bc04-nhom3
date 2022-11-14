@@ -148,8 +148,8 @@ export default function UserListAdmin() {
       >
         <Menu
           theme="dark"
-          defaultOpenKeys="course"
-          defaultSelectedKeys="courseItem"
+          // defaultOpenKeys="course"
+          defaultSelectedKeys="userList"
           mode="inline"
         >
           <Menu.Item key="userList" icon={<UserOutlined />}>

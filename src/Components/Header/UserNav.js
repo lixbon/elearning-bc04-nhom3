@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Dropdown, Menu, Space } from "antd";
 import { UserOutlined } from "@ant-design/icons";

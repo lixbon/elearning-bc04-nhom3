@@ -60,7 +60,7 @@ export default function UserAdd() {
           // console.log(collapsed, type);
         }}
       >
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys="userList" mode="inline">
           <Menu.Item key="userList" icon={<UserOutlined />}>
             <NavLink to="/admin/userManagement">User</NavLink>
           </Menu.Item>

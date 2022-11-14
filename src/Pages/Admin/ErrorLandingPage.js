@@ -18,7 +18,7 @@ export default function Error403() {
         You currently do not have permission to access this page
       </div>
       <NavLink to="/">
-        <button className="rounded bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-3">
+        <button className="rounded bg-blue-500 hover:bg-blue-700 duration-200 p-2 text-white mt-3">
           Back to Homepage
         </button>
       </NavLink>

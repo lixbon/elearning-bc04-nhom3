@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import UserNav from "./UserNav";
 
-export default function Header() {
+export default function HeaderNon() {
   return (
     <div className="p-[12px] grid w-full grid-cols-2 bg-white opacity-90 border-b shadow z-50">
       <div className="flex items-center">
