@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Loading from "./Components/Loading/Loading";
 import BaseLayout from "./HOC/BaseLayout";
+import LoginRegisterLayout from "./HOC/LoginRegisterLayout";
 import SecureView from "./HOC/SecureView";
 import HomePage from "./Pages/HomePage/HomePage";
 import "antd/dist/antd.min.css";
@@ -15,6 +16,8 @@ import SocialMedia from "./Components/SocialMedia/SocialMedia";
 import { useSelector } from "react-redux";
 import Message from "./Components/Message/Message";
 import UserSettingPage from "./Pages/UserSettingPage/UserSettingPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
+import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -76,6 +79,14 @@ function App() {
             {/* End Quan */}
 
             {/* Start Hong Anh */}
+            <Route
+              path="/login"
+              element={<LoginRegisterLayout Component={LoginPage} />}
+            />
+            <Route
+              path="/register"
+              element={<LoginRegisterLayout Component={RegisterPage} />}
+            />
 
             {/* End Hong Anh */}
 
