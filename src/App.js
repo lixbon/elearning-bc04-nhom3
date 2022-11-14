@@ -3,9 +3,12 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Loading from "./Components/Loading/Loading";
 import BaseLayout from "./HOC/BaseLayout";
+import LoginRegisterLayout from "./HOC/LoginRegisterLayout";
 import SecureView from "./HOC/SecureView";
-import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
 import HomePage from "./Pages/HomePage/HomePage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
+import RegisterPage from "./Pages/RegisterPage/RegisterPage";
+import "antd/dist/antd.min.css";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -24,17 +27,18 @@ function App() {
           <Routes>
             {/* Start Quan */}
             <Route path="/" element={<BaseLayout Component={HomePage} />} />
-            <Route
-              path="/checkout"
-              element={
-                <SecureView>
-                  <BaseLayout Component={CheckOutPage} />
-                </SecureView>
-              }
-            />
+
             {/* End Quan */}
 
             {/* Start Hong Anh */}
+            <Route
+              path="/login"
+              element={<LoginRegisterLayout Component={LoginPage} />}
+            />
+            <Route
+              path="/register"
+              element={<LoginRegisterLayout Component={RegisterPage} />}
+            />
 
             {/* End Hong Anh */}
 

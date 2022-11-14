@@ -1,18 +1,16 @@
 import React from "react";
 
-const Button = ({ content, onClick, style }) => {
+export default function Button({ children, onClick, className }) {
   return (
     <button
+      onClick={onClick}
       className={
-        `px-6 py-3 rounded-lg hover:scale-105 duration-200` + " " + style
+        `px-4 py-2 border rounded-md hover:scale-105 duration-200 text-sm font-semibold hover:shadow-sm hover:shadow-white uppercase dark:text-white z-1 ` +
+        " " +
+        className
       }
-      onClick={() => {
-        onClick;
-      }}
     >
-      {content}
+      {children}
     </button>
   );
-};
-
-export default Button;
+}

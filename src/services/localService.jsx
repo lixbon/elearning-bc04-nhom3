@@ -1,4 +1,5 @@
 const ELEARNINGUSER = "ELEARNINGUSER";
+
 export const localServ = {
   user: {
     set: (dataLogin) => {
