@@ -109,11 +109,8 @@ export default function RegisterPage() {
             >
               <Input />
             </Form.Item>
-            <h4 className="dark:text-white">
-              <span className="text-red-500">*</span> Group (GP01-&gt; GP05)
-            </h4>
             <Form.Item
-              label=""
+              label="Group (GP01-&gt; GP05)"
               name="maNhom"
               rules={[
                 {
