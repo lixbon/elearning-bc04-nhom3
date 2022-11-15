@@ -1,5 +1,5 @@
 import axios from "axios";
-import { localServ } from "./localService";
+import { localServ } from "./AdminServices/localService";
 
 export const BASE_URL = "https://elearningnew.cybersoft.edu.vn";
 export const TOKEN_CYBERSOFT =

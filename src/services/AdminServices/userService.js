@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, GROUP_CODE, https, TOKEN_CYBERSOFT } from "./configURL";
+import { BASE_URL, GROUP_CODE, https, TOKEN_CYBERSOFT } from "../configURL";
 import { localServ } from "./localService";
 
 export const userServ = {

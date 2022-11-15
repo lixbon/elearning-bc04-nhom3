@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { courseServ } from "../../services/courseService";
+import { courseServ } from "../../services/AdminServices/courseService";
 import {
   ADD_NEW_COURSE,
   CANCEL_REGISTER_COURSE,

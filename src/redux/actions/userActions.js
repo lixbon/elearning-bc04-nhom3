@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
-import { localServ } from "../../services/localService";
-import { userServ } from "../../services/userService";
+import { localServ } from "../../services/AdminServices/localService";
+import { userServ } from "../../services/AdminServices/userService";
 import {
   GET_USERLIST,
   USER_ADD,
