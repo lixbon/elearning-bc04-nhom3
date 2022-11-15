@@ -31,13 +31,10 @@ export const courseServ = {
   addNewCourseAdmin: (formData) => {
     return axios({
       url: `${BASE_URL}/api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh`,
-      // /api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh
-      // /api/QuanLyKhoaHoc/ThemKhoaHoc
       method: "POST",
       data: formData,
       headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
-        // Authorization: "Bearer " + localServ.user.get()?.accessToken,
       },
     });
   },
