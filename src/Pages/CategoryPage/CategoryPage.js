@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CourseCard from "../../Components/CourseCard/CourseCard";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 
 export default function CategoryPage() {
@@ -11,15 +10,12 @@ export default function CategoryPage() {
 
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingON());
     courseServ
       .getCourseByCategory(categoryid)
       .then((res) => {
-        dispatch(setLoadingOFF());
         setcourseList(res.data);
       })
       .catch((err) => {
-        dispatch(setLoadingOFF());
         console.log(err);
       });
   }, [categoryid]);

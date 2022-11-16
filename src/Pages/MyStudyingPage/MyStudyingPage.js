@@ -2,7 +2,6 @@ import { Rate } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../Components/Button/Button";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import { userServ } from "../../services/userService";
 import moment from "moment";
@@ -16,15 +15,12 @@ export default function MyStudyingPage() {
 
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingON());
     userServ
       .getUserInfo()
       .then((res) => {
-        dispatch(setLoadingOFF());
         setuserInfo(res.data);
       })
       .catch((err) => {
-        dispatch(setLoadingOFF());
         console.log(err);
       });
   }, [check]);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 import Style from "./coursedetailpage.module.css";
 import { Rate } from "antd";
@@ -22,15 +21,12 @@ export default function CourseDetailPage() {
 
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingON());
     courseServ
       .getCourseDetail(courseid)
       .then((res) => {
-        dispatch(setLoadingOFF());
         setcourseDetail(res.data);
       })
       .catch((err) => {
-        dispatch(setLoadingOFF());
         console.log(err);
       });
   }, []);
@@ -56,16 +52,13 @@ export default function CourseDetailPage() {
       const registerInfo = new CourseRegisterInfo();
       registerInfo.maKhoaHoc = courseid;
       registerInfo.taiKhoan = localServ.user.get().taiKhoan;
-      dispatch(setLoadingON());
       courseServ
         .postCourseRegister(registerInfo)
         .then((res) => {
           dispatch(setMessageOn(res.data));
-          dispatch(setLoadingOFF());
         })
         .catch((err) => {
           dispatch(setMessageOn(err.response.data));
-          dispatch(setLoadingOFF());
         });
     } else {
       navigate("/login");

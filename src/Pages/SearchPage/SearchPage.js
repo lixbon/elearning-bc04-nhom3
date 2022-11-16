@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CourseCard from "../../Components/CourseCard/CourseCard";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 
 export default function SearchPage() {
@@ -12,17 +11,14 @@ export default function SearchPage() {
   const { value } = useParams();
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingON());
     courseServ
       .getCourseListSearch(value)
       .then((res) => {
-        dispatch(setLoadingOFF());
         setisFound(true);
         setcourseList(res.data);
       })
       .catch((err) => {
         setisFound(false);
-        dispatch(setLoadingOFF());
         seterrorResponse(err.response.data);
       });
   }, [value]);

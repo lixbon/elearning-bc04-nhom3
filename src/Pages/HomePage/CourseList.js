@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../Components/Button/Button";
 import CourseCard from "../../Components/CourseCard/CourseCard";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { courseServ } from "../../services/courseService";
 
 export default function CourseList() {
@@ -13,15 +12,12 @@ export default function CourseList() {
   };
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setLoadingON());
     courseServ
       .getCourseList()
       .then((res) => {
-        dispatch(setLoadingOFF());
         setcourseList(res.data);
       })
       .catch((err) => {
-        dispatch(setLoadingOFF());
         console.log(err);
       });
   }, []);

@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode } from "../../redux/slice/darkModeSlice";
 import { courseServ } from "../../services/courseService";
-import { setLoadingOFF, setLoadingON } from "../../redux/slice/loadingSlice";
 import { setCategoryList } from "../../redux/slice/categorySlice";
 const { Search } = Input;
 
@@ -49,16 +48,13 @@ export default function Header() {
     navigate(`/search/${value}`);
   };
   useEffect(() => {
-    dispatch(setLoadingON());
     courseServ
       .getCategoryList()
       .then((res) => {
-        dispatch(setLoadingOFF());
         dispatch(setCategoryList(res.data));
         setCategoryList(res.data);
       })
       .catch((err) => {
-        dispatch(setLoadingOFF());
         console.log(err);
       });
   }, []);
