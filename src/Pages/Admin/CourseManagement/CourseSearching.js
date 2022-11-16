@@ -46,7 +46,7 @@ export default function CourseSearching() {
       return item.maKhoaHoc === maKhoaHoc;
     });
     dispatch(courseEditingAction(searchingList[index]));
-    navigate(`/admin/course/courseManagement/courseStudentList/${maKhoaHoc}`);
+    navigate(`/course/courseManagement/courseStudentList/${maKhoaHoc}`);
   };
 
   //SET UP MODAL
@@ -169,7 +169,7 @@ export default function CourseSearching() {
 
   //-Setup search in put
   const onSearch = (value) => {
-    navigate(`/admin/course/courseManagement/search/${value}`);
+    navigate(`/course/courseManagement/search/${value}`);
   };
 
   return (
@@ -195,16 +195,14 @@ export default function CourseSearching() {
           mode="inline"
         >
           <Menu.Item key="userList" icon={<UserOutlined />}>
-            <NavLink to="/admin/userManagement">User</NavLink>
+            <NavLink to="/userManagement">User</NavLink>
           </Menu.Item>
           <Menu.SubMenu key="course" title="Course" icon={<FileOutlined />}>
             <Menu.Item key="courseItem">
-              <NavLink to="/admin/course/courseManagement">
-                Course Management
-              </NavLink>
+              <NavLink to="/course/courseManagement">Course Management</NavLink>
             </Menu.Item>
             <Menu.Item key="addCourse">
-              <NavLink to="/admin/course/addNewCourse">Add New</NavLink>
+              <NavLink to="/course/addNewCourse">Add New</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
@@ -226,9 +224,7 @@ export default function CourseSearching() {
               margin: "16px 0",
             }}
           >
-            <NavLink to="/admin/course/courseManagement">
-              Course Management
-            </NavLink>
+            <NavLink to="/course/courseManagement">Course Management</NavLink>
           </Breadcrumb>
           <div
             className="site-layout-background"

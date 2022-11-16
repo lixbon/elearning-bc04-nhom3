@@ -19,7 +19,7 @@ export const userLoginAction = (values) => {
       let res = await userServ.userLogin(values);
       console.log(res);
       if (res.status === 200) {
-        await localServ.user.set(res.data);
+        localServ.user.set(res.data);
         await dispatch({
           type: USER_LOGIN,
           user: res.data.content,

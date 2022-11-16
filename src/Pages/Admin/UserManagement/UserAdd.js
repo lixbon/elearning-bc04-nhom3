@@ -62,16 +62,14 @@ export default function UserAdd() {
       >
         <Menu theme="dark" defaultSelectedKeys="userList" mode="inline">
           <Menu.Item key="userList" icon={<UserOutlined />}>
-            <NavLink to="/admin/userManagement">User</NavLink>
+            <NavLink to="/userManagement">User</NavLink>
           </Menu.Item>
           <Menu.SubMenu key="course" title="Courses" icon={<FileOutlined />}>
             <Menu.Item key="courseItem">
-              <NavLink to="/admin/course/courseManagement">
-                Course Management
-              </NavLink>
+              <NavLink to="/course/courseManagement">Course Management</NavLink>
             </Menu.Item>
             <Menu.Item key="addCourse">
-              <NavLink to="/admin/course/addNewCourse">Add New</NavLink>
+              <NavLink to="/course/addNewCourse">Add New</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
@@ -95,7 +93,7 @@ export default function UserAdd() {
           >
             {" "}
             <Breadcrumb.Item>
-              <NavLink to="/admin/userManagement">User Management</NavLink>
+              <NavLink to="/userManagement">User Management</NavLink>
             </Breadcrumb.Item>
           </Breadcrumb>
           <div

@@ -41,7 +41,7 @@ export default function UserListAdmin() {
   //SET UP FORM COLUMNS, SEARCH INPUT, PAGINATION
   //-Declare search input
   const onSearch = (value) => {
-    navigate(`/admin/userManagement/search/${value}`);
+    navigate(`/userManagement/search/${value}`);
   };
   //-Set up pagination
   const [sortedInfo, setSortedInfo] = useState({});
@@ -153,16 +153,14 @@ export default function UserListAdmin() {
           mode="inline"
         >
           <Menu.Item key="userList" icon={<UserOutlined />}>
-            <NavLink to="/admin/userManagement">User</NavLink>
+            <NavLink to="/userManagement">User</NavLink>
           </Menu.Item>
           <Menu.SubMenu key="course" title="Course" icon={<FileOutlined />}>
             <Menu.Item key="courseItem">
-              <NavLink to="/admin/course/courseManagement">
-                Course Management
-              </NavLink>
+              <NavLink to="/course/courseManagement">Course Management</NavLink>
             </Menu.Item>
             <Menu.Item key="addCourse">
-              <NavLink to="/admin/course/addNewCourse">Add New</NavLink>
+              <NavLink to="/course/addNewCourse">Add New</NavLink>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
@@ -194,7 +192,7 @@ export default function UserListAdmin() {
           >
             <div>
               <div className="text-2xl bold">User Management</div>
-              <NavLink to="/admin/userManagement/addUser">
+              <NavLink to="/userManagement/addUser">
                 <button className="border text-white font-bold bg-blue-500 rounded p-2 my-1">
                   + Add New User
                 </button>

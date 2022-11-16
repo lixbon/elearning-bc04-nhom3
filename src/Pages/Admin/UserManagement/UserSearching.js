@@ -37,7 +37,7 @@ export default function UserSearching() {
   let userSearching = useSelector((state) => state.userReducer.userSearching);
   //-Setup search in put
   const onSearch = (value) => {
-    navigate(`/admin/userManagement/search/${value}`);
+    navigate(`/userManagement/search/${value}`);
   };
   //-Set up pagination
   const [sortedInfo, setSortedInfo] = useState({});
@@ -143,16 +143,14 @@ export default function UserSearching() {
       >
         <Menu theme="dark" defaultSelectedKeys="userList" mode="inline">
           <Menu.Item key="userList" icon={<UserOutlined />}>
-            <NavLink to="/admin/userManagement">User</NavLink>
+            <NavLink to="/userManagement">User</NavLink>
           </Menu.Item>
           <Menu.SubMenu key="course" title="Courses" icon={<FileOutlined />}>
             <Menu.Item key="courseItem">
-              <NavLink to="/admin/course/courseManagement">
-                Course Management
-              </NavLink>
+              <NavLink to="/course/courseManagement">Course Management</NavLink>
             </Menu.Item>
             {/* <Menu.Item key="addFilm">
-              <NavLink to="/admin/course/">Add New</NavLink>
+              <NavLink to="/course/">Add New</NavLink>
             </Menu.Item> */}
           </Menu.SubMenu>
         </Menu>
@@ -175,7 +173,7 @@ export default function UserSearching() {
               margin: "16px 0",
             }}
           >
-            <NavLink to="/admin/userManagement">User Management</NavLink>
+            <NavLink to="/userManagement">User Management</NavLink>
           </Breadcrumb>
           <div
             className="site-layout-background"
@@ -186,7 +184,7 @@ export default function UserSearching() {
           >
             <div>
               <div className="text-2xl bold">Searching User</div>
-              <NavLink to="/admin/userManagement/addUser">
+              <NavLink to="/userManagement/addUser">
                 <button className="border text-white font-bold bg-blue-500 rounded p-2 my-1">
                   + Add New User
                 </button>

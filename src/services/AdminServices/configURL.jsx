@@ -13,4 +13,4 @@ export const https = axios.create({
     Authorization: "Bearer " + localServ.user.get()?.accessToken,
   },
 });
-export const GROUP_CODE = "gp03";
+export const GROUP_CODE = "gp01";

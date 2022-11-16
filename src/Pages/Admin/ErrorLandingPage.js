@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { localServ } from "../../services/AdminServices/localService";
 export default function Error403() {
   //DECLARE HANDLE FUNCTION
   const handleShowId = () => {
@@ -10,6 +11,10 @@ export default function Error403() {
       showId.style.display = "none";
     }
   };
+  const handleSignOut = () => {
+    localServ.user.remove();
+    window.location.href = "/login";
+  };
 
   return (
     <div className="text-center pt-10 h-screen space-y-3">
@@ -17,11 +22,14 @@ export default function Error403() {
       <div className="text-xl">
         You currently do not have permission to access this page
       </div>
-      <NavLink to="/">
-        <button className="rounded bg-blue-500 hover:bg-blue-700 duration-200 p-2 text-white mt-3">
-          Back to Homepage
-        </button>
-      </NavLink>
+      <button
+        onClick={() => {
+          handleSignOut();
+        }}
+        className="rounded bg-blue-500 hover:bg-blue-700 duration-200 p-2 text-white mt-3"
+      >
+        Back to Login page
+      </button>
       <br />
       <button
         onClick={() => {
