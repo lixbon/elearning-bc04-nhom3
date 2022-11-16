@@ -18,6 +18,8 @@ import Message from "./Components/Message/Message";
 import UserSettingPage from "./Pages/UserSettingPage/UserSettingPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
+import axios from "axios";
+import { https } from "./services/configURL";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -31,6 +33,48 @@ function App() {
   let { isdarkMode } = useSelector((state) => {
     return state.darkModeSlice;
   });
+  axios.interceptors.request.use(
+    function (config) {
+      document.getElementById("loading").style.display = "flex";
+      return config;
+    },
+    function (error) {
+      document.getElementById("loading").style.display = "flex";
+      return Promise.reject(error);
+    }
+  );
+
+  axios.interceptors.response.use(
+    function (response) {
+      document.getElementById("loading").style.display = "none";
+      return response;
+    },
+    function (error) {
+      document.getElementById("loading").style.display = "none";
+      return Promise.reject(error);
+    }
+  );
+  https.interceptors.request.use(
+    function (config) {
+      document.getElementById("loading").style.display = "flex";
+      return config;
+    },
+    function (error) {
+      document.getElementById("loading").style.display = "flex";
+      return Promise.reject(error);
+    }
+  );
+
+  https.interceptors.response.use(
+    function (response) {
+      document.getElementById("loading").style.display = "none";
+      return response;
+    },
+    function (error) {
+      document.getElementById("loading").style.display = "none";
+      return Promise.reject(error);
+    }
+  );
   return (
     <div className={isdarkMode ? "dark overflow-hidden" : "overflow-hidden"}>
       <Loading />
