@@ -3,17 +3,18 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "antd/dist/antd.min.css";
 import "./App.css";
 import Loading from "./Components/Loading/Loading";
-import BaseLayout from "./HOC/BaseLayout";
-import SecureView from "./HOC/SecureView";
 import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
 import HomePage from "./Pages/HomePage/HomePage";
-import LoginPage from "./Pages/LoginPage/LoginPage";
 import axios from "axios";
-import { https } from "./services/configURL";
+import { https } from "./services/AdminServices/configURL";
 import Error403 from "./Pages/Admin/ErrorLandingPage";
-import SecureViewAdmin from "./HOC/SecureViewAdmin";
+//-----HOC--------
+import BaseLayout from "./HOC/AdminHOC/BaseLayout";
+import SecureView from "./HOC/AdminHOC/SecureView";
+import SecureViewAdmin from "./HOC/AdminHOC/SecureViewAdmin";
+// import LoginPage from "./Pages/LoginPage/LoginPage";
+// import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import AdminPage from "./Pages/Admin/AdminPage";
-import RegisterPage from "./Pages/LoginPage/RegisterPage";
 import CoursesList from "./Pages/Admin/CourseManagement/CoursesList";
 import CourseAddNew from "./Pages/Admin/CourseManagement/CourseAddNew";
 import CourseSearching from "./Pages/Admin/CourseManagement/CourseSearching";
@@ -93,14 +94,14 @@ function App() {
             {/* Start Hong Anh */}
             {/* End Hong Anh */}
             {/* Start Quang */}
-            <Route
+            {/* <Route
               path="/login"
               element={<BaseLayout Component={LoginPage} />}
             />
             <Route
               path="/register"
               element={<BaseLayout Component={RegisterPage} />}
-            />
+            /> */}
             {/* ADMIN - USER */}
             <Route
               path="/admin"

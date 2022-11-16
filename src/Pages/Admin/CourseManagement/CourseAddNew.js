@@ -15,7 +15,7 @@ import {
   addNewCourseAction,
   getCourseCatagoryAction,
 } from "../../../redux/actions/courseAction";
-import { GROUP_CODE } from "../../../services/configURL";
+import { GROUP_CODE } from "../../../services/AdminServices/configURL";
 
 const { Header, Content, Sider } = Layout;
 const { Option } = Select;

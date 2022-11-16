@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
 import { updateCourseAdminAction } from "../../../redux/actions/courseAction";
-import { GROUP_CODE } from "../../../services/configURL";
+import { GROUP_CODE } from "../../../services/AdminServices/configURL";
 import { useParams } from "react-router-dom";
 
 const formItemLayout = {

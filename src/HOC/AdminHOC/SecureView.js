@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { localServ } from "../services/AdminServices/localService";
+import { localServ } from "../../services/AdminServices/localService";
 
 export default function SecureView({ children }) {
   useEffect(() => {

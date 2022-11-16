@@ -9,7 +9,7 @@ import {
 import { Button, Form, Input, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { userUpdateAdminAction } from "../../../redux/actions/userActions";
-import { GROUP_CODE } from "../../../services/configURL";
+import { GROUP_CODE } from "../../../services/AdminServices/configURL";
 
 const { Option } = Select;
 const formItemLayout = {
