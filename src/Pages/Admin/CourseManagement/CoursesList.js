@@ -83,7 +83,7 @@ export default function CoursesList() {
       key: "maKhoaHoc",
       sorter: (a, b) => a.maKhoaHoc - b.maKhoaHoc,
       sortOrder: sortedInfo.columnKey === "maKhoaHoc" ? sortedInfo.order : null,
-      className: "sm:w-[110px] w-[62px] sm:text-base text-[9px]",
+      className: "sm:w-[110px] w-[62px] sm:text-base text-[11px]",
     },
     {
       title: "Image",
@@ -91,7 +91,7 @@ export default function CoursesList() {
       render: (t, r) => <img alt="" src={`${r.hinhAnh}`} />,
       key: "hinhAnh",
       align: "center",
-      className: "sm:table-cell hidden sm:text-base text-[9px]",
+      className: "sm:table-cell hidden sm:text-base text-[11px]",
     },
     {
       title: "Course title",
@@ -101,7 +101,7 @@ export default function CoursesList() {
       sortOrder:
         sortedInfo.columnKey === "tenKhoaHoc" ? sortedInfo.order : null,
       align: "center",
-      className: "sm:w-2/12 w-[80px] sm:text-base text-[9px]",
+      className: "sm:w-2/12 w-[80px] sm:text-base text-[11px]",
     },
 
     {
@@ -112,7 +112,7 @@ export default function CoursesList() {
       ellipsis: {
         showTitle: false,
       },
-      className: "w-4/12 sm:text-base text-[9px] ",
+      className: "w-4/12 sm:text-base text-[11px] ",
       render: (moTa) => (
         <Tooltip placement="topLeft" title={moTa}>
           {moTa}
@@ -124,13 +124,13 @@ export default function CoursesList() {
       dataIndex: "maKhoaHoc",
       render: (maKhoaHoc) => {
         return (
-          <div className="text-center flex justify-center ">
+          <div className="text-center md:flex md:justify-center md:gap-1 grid grid-cols-2 gap-3 mx-auto">
             <button className="">
               <BiEdit
                 onClick={() => {
                   handleCourseEditing(maKhoaHoc);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[18px] h-[18px]"
               />
             </button>
             <button>
@@ -138,7 +138,7 @@ export default function CoursesList() {
                 onClick={() => {
                   handleRegisterCourseForStudent(maKhoaHoc);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[18px] h-[18px]"
               />
             </button>
             <button>
@@ -146,7 +146,7 @@ export default function CoursesList() {
                 onClick={() => {
                   handleCourseStudentList(maKhoaHoc);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[18px] h-[18px]"
               />
             </button>
             <button>
@@ -154,7 +154,7 @@ export default function CoursesList() {
                 onClick={() => {
                   handleDeleteCourse(maKhoaHoc);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[18px] h-[18px]"
               />
             </button>
           </div>
@@ -207,12 +207,9 @@ export default function CoursesList() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        /> */}
+        <Header className="site-layout-background text-center font-bold sm:text-[30px] text-[15px] p-0">
+          Administrator
+        </Header>
         <Content
           style={{
             margin: "0 16px",

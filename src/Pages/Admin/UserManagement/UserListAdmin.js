@@ -60,32 +60,32 @@ export default function UserListAdmin() {
       key: "taiKhoan",
       sorter: (a, b) => a.taiKhoan - b.taiKhoan,
       sortOrder: sortedInfo.columnKey === "taiKhoan" ? sortedInfo.order : null,
-      className: "xl:text-base text-[9px]",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "Full name",
       dataIndex: "hoTen",
       key: "hoTen",
-      className: "xl:text-base text-[9px]",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      className: "xl:text-base text-[9px] ",
+      className: "xl:text-base text-[11px] ",
     },
 
     {
       title: "Phone Number",
       dataIndex: "soDt",
       key: "soDt",
-      className: "xl:text-base text-[9px] ",
+      className: "xl:text-base text-[11px] ",
     },
     {
       title: "User Type",
       dataIndex: "maLoaiNguoiDung",
       key: "maLoaiNguoiDung",
-      className: "xl:text-base text-[9px] ",
+      className: "xl:text-base text-[11px] ",
       render: (maLoaiNguoiDung) => {
         var color;
         if (maLoaiNguoiDung.toUpperCase() === "GV") {
@@ -107,10 +107,10 @@ export default function UserListAdmin() {
       render: (taiKhoan) => {
         return (
           <div className="text-center flex justify-center ">
-            <button className="sm:mr-3 mr-1">
+            <button className="sm:mr-3 mr-2">
               <BiEdit
                 onClick={() => handleUserEditing(taiKhoan)}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[19px] h-[19px]"
               />
             </button>
             <button>
@@ -118,7 +118,7 @@ export default function UserListAdmin() {
                 onClick={() => {
                   handleUserDelete(taiKhoan);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[19px] h-[19px]"
               />
             </button>
           </div>
@@ -126,7 +126,6 @@ export default function UserListAdmin() {
       },
       key: "hanhDong",
       align: "center",
-      className: "w-2/12 xl:text-base text-[9px]",
     },
   ];
 
@@ -166,12 +165,9 @@ export default function UserListAdmin() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        /> */}
+        <Header className="site-layout-background text-center font-bold sm:text-[30px] text-[15px] p-0">
+          Administrator
+        </Header>
         <Content
           className=""
           style={{

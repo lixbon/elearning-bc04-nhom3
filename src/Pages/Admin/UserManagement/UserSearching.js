@@ -64,26 +64,31 @@ export default function UserSearching() {
       title: "Username",
       dataIndex: "taiKhoan",
       key: "taiKhoan",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "Fullname",
       dataIndex: "hoTen",
       key: "hoTen",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "Phone Number",
       dataIndex: "soDt",
       key: "soDt",
+      className: "xl:text-base text-[11px]",
     },
     {
       title: "User Type",
       dataIndex: "maLoaiNguoiDung",
       key: "maLoaiNguoiDung",
+      className: "xl:text-base text-[11px]",
       render: (maLoaiNguoiDung) => {
         let color;
         if (maLoaiNguoiDung.toUpperCase() === "HV") {
@@ -104,23 +109,22 @@ export default function UserSearching() {
       dataIndex: "taiKhoan",
       key: "action",
       render: (taiKhoan) => (
-        <Space size="middle">
-          <button>
+        <div className="text-center flex justify-center ">
+          <button className="sm:mr-3 mr-2">
             <BiEdit
-              onClick={() => {
-                handleUserEditing(taiKhoan);
-              }}
-              style={{ width: "20px", height: "20px" }}
+              onClick={() => handleUserEditing(taiKhoan)}
+              className="sm:w-[25px] sm:h-[25px] w-[19px] h-[19px]"
             />
           </button>
-          <button
-            onClick={() => {
-              handleUserDelete(taiKhoan);
-            }}
-          >
-            <MdDelete style={{ width: "25px", height: "25px" }} />
+          <button>
+            <MdDelete
+              onClick={() => {
+                handleUserDelete(taiKhoan);
+              }}
+              className="sm:w-[25px] sm:h-[25px] w-[19px] h-[19px]"
+            />
           </button>
-        </Space>
+        </div>
       ),
     },
   ];
@@ -156,13 +160,9 @@ export default function UserSearching() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-            height: 0,
-          }}
-        /> */}
+        <Header className="site-layout-background text-center font-bold sm:text-[30px] text-[15px] p-0 !pr-[5px]">
+          Administrator
+        </Header>
         <Content
           style={{
             margin: "0 16px",

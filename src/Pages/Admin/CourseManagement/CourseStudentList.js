@@ -71,7 +71,7 @@ export default function CourseStudentList() {
                 onClick={() => {
                   handleCancelRegisterCourse(taiKhoan);
                 }}
-                className="sm:w-[25px] sm:h-[25px] w-[10px] h-[10px]"
+                className="sm:w-[25px] sm:h-[25px] w-[15px] h-[15px]"
               />
             </button>
           </div>
@@ -119,12 +119,9 @@ export default function CourseStudentList() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        /> */}
+        <Header className="site-layout-background text-center font-bold sm:text-[30px] text-[15px] p-0">
+          Administrator
+        </Header>
         <Content
           className=""
           style={{
@@ -146,9 +143,11 @@ export default function CourseStudentList() {
             }}
           >
             <div>
-              <div className="text-2xl bold mb-10">Course Infomation</div>
-              <div className="w-full flex">
-                <div className="w-1/3">
+              <div className="w-full sm:flex">
+                <div className="sm:w-1/3 w-full">
+                  <div className="text-2xl bold sm:mb-7 mb-3">
+                    Course Infomation
+                  </div>
                   <span className="bold sm:text-xl text-sm">
                     {courseInfo.tenKhoaHoc}
                   </span>
@@ -160,13 +159,21 @@ export default function CourseStudentList() {
                     />
                   </span>
                 </div>
-                <Table
-                  className="overflow-auto w-2/3"
-                  rowKey="taiKhoan"
-                  columns={columns}
-                  dataSource={courseStudentList}
-                  onChange={handleChange}
-                />
+                <div className="bold sm:hidden d-block sm:text-[30px] text-[20px] my-3 text-center">
+                  Student Table
+                </div>
+                <div className="sm:w-2/3 w-full">
+                  <div className="text-2xl bold sm:mb-7 mb-3 text-center sm:block hidden">
+                    Student Table
+                  </div>
+                  <Table
+                    className="overflow-auto "
+                    rowKey="taiKhoan"
+                    columns={columns}
+                    dataSource={courseStudentList}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
             </div>
           </div>

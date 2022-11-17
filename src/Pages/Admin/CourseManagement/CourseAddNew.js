@@ -162,12 +162,9 @@ export default function CourseAddNew() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        /> */}
+        <Header className="site-layout-background text-center font-bold sm:text-[30px] text-[15px] p-0">
+          Administrator
+        </Header>
         <Content
           style={{
             margin: "0 16px",
@@ -196,7 +193,7 @@ export default function CourseAddNew() {
               ></Space>
 
               <Form
-                className="sm:w-1/3 w-2/3"
+                className="sm:w-2/5 w-5/6"
                 {...formItemLayout}
                 form={form}
                 name="addNewCourse"

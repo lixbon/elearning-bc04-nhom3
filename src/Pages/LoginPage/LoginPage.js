@@ -17,11 +17,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center container items-center pt-32">
-      <Lottie className="w-2/3 h-96" animationData={bg_login} />
+    <div className="flex justify-center container items-center pt-32 mx-auto px-[5%]">
+      <Lottie className="sm:w-2/3 w-3/5 h-96" animationData={bg_login} />
       <Form
         name="normal_login"
-        className="login-form w-1/3"
+        className="login-form sm:w-1/3 w-2/5"
         initialValues={{
           remember: true,
         }}
