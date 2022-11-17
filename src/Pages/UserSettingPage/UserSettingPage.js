@@ -9,7 +9,7 @@ export default function UserSettingPage() {
   let { user } = useSelector((state) => {
     return state.userSlice;
   });
-  const { taiKhoan, email, soDt, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
+  const { taiKhoan, email, soDT, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
     user;
   return (
     <div className="min-h-[80vh] dark:bg-darkcolor2 space-y-10 pb-10">
@@ -55,7 +55,7 @@ export default function UserSettingPage() {
                 <h4 className="dark:text-white">
                   PhoneNumber:
                   <span className="text-red-500 dark:text-blue-500 ml-2">
-                    {soDt}
+                    {soDT}
                   </span>
                 </h4>
                 <h4 className="dark:text-white">
