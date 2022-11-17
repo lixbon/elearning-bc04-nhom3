@@ -49,6 +49,14 @@ export default function UserNav() {
                 Setting
               </h3>
               <hr />
+              <a
+                href="https://elearning-bc04-nhom3-git-quang-lixbon.vercel.app"
+                target="_blank"
+                className="font-semibold text-black"
+              >
+                Administrator{" "}
+              </a>
+              <hr />
               <h3
                 className="cursor-pointer hover:text-red-500"
                 onClick={handleLogOut}

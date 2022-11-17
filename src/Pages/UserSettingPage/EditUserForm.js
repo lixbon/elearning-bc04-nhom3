@@ -2,6 +2,8 @@ import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessageOn } from "../../redux/slice/messageSlice";
+import { setUserInfor } from "../../redux/slice/userSlice";
+import { localServ } from "../../services/localService";
 import { userServ } from "../../services/userService";
 
 export default function EditUserForm() {
@@ -10,13 +12,28 @@ export default function EditUserForm() {
     return state.userSlice;
   });
   let dispatch = useDispatch();
-  const { taiKhoan, email, soDT, maNhom, maLoaiNguoiDung, hoTen, matKhau } =
-    user;
+  const {
+    taiKhoan,
+    email,
+    soDT,
+    maNhom,
+    maLoaiNguoiDung,
+    hoTen,
+    matKhau,
+    accessToken,
+  } = user;
+  const handleUpdateUser = (values) => {
+    const userupdate = { ...values, accessToken: accessToken };
+    delete userupdate.matKhau;
+    localServ.user.set(userupdate);
+    dispatch(setUserInfor(userupdate));
+  };
   const onFinish = (values) => {
     userServ
       .editUserInfo(values)
       .then((res) => {
         dispatch(setMessageOn("Update Success"));
+        handleUpdateUser(values);
       })
       .catch((err) => {
         dispatch(setMessageOn(err.response.data));
@@ -136,7 +153,17 @@ export default function EditUserForm() {
               },
             ]}
           >
-            <Input />
+            <Select
+              style={{
+                width: 120,
+              }}
+            >
+              <Option value="GP01">GP01</Option>
+              <Option value="GP02">GP02</Option>
+              <Option value="GP03">GP03</Option>
+              <Option value="GP04">GP04</Option>
+              <Option value="GP05">GP05</Option>
+            </Select>
           </Form.Item>
           <h4 className="dark:text-white">
             <span className="text-red-500">*</span> Account Type
