@@ -136,7 +136,17 @@ export default function EditUserForm() {
               },
             ]}
           >
-            <Input />
+            <Select
+              style={{
+                width: 120,
+              }}
+            >
+              <Option value="GP01">GP01</Option>
+              <Option value="GP02">GP02</Option>
+              <Option value="GP03">GP03</Option>
+              <Option value="GP04">GP04</Option>
+              <Option value="GP05">GP05</Option>
+            </Select>
           </Form.Item>
           <h4 className="dark:text-white">
             <span className="text-red-500">*</span> Account Type
