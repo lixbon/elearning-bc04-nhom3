@@ -15,7 +15,7 @@ export default function EditUserForm() {
   const {
     taiKhoan,
     email,
-    soDt,
+    soDT,
     maNhom,
     maLoaiNguoiDung,
     hoTen,
@@ -57,7 +57,7 @@ export default function EditUserForm() {
           taiKhoan: taiKhoan,
           matKhau: matKhau,
           email: email,
-          soDt: soDt,
+          soDt: soDT,
           maNhom: maNhom,
           maLoaiNguoiDung: maLoaiNguoiDung,
           hoTen: hoTen,
