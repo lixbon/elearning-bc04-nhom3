@@ -57,7 +57,7 @@ export default function EditUserForm() {
           taiKhoan: taiKhoan,
           matKhau: matKhau,
           email: email,
-          soDt: soDT,
+          soDT: soDT,
           maNhom: maNhom,
           maLoaiNguoiDung: maLoaiNguoiDung,
           hoTen: hoTen,
@@ -130,7 +130,7 @@ export default function EditUserForm() {
           </h4>
           <Form.Item
             label=""
-            name="soDt"
+            name="soDT"
             rules={[
               {
                 required: true,
