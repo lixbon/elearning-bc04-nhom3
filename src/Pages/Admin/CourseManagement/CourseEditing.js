@@ -72,7 +72,7 @@ export default function CourseEditing({ setModalEditing }) {
       luotXem: courseEditing?.luotXem,
       danhGia: courseEditing?.danhGia,
       hinhAnh: null,
-      maNhom: GROUP_CODE,
+      maNhom: "GP01",
       ngayTao: courseEditing?.ngayTao,
       maDanhMucKhoahoc: courseEditing?.danhMucKhoaHoc.maDanhMucKhoahoc,
       taiKhoanNguoiTao: courseEditing?.nguoiTao.taiKhoan,
@@ -85,10 +85,23 @@ export default function CourseEditing({ setModalEditing }) {
           formData.append(key, values[key]);
         } else {
           if (values.hinhAnh !== null) {
-            formData.append("File", values.hinhAnh, values.hinhAnh.name);
+            formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
           }
         }
+        // console.log(values[key]);
       }
+      // console.log("maKhoaHoc", formData.get("maKhoaHoc"));
+      // console.log("biDanh", formData.get("biDanh"));
+      // console.log("tenKhoaHoc", formData.get("tenKhoaHoc"));
+      // console.log("moTa", formData.get("moTa"));
+      // console.log("luotXem", formData.get("luotXem"));
+      // console.log("danhGia", formData.get("danhGia"));
+      // console.log("hinhAnh", formData.get("hinhAnh"));
+      // console.log("maNhom", formData.get("maNhom"));
+      // console.log("maDanhMucKhoahoc", formData.get("maDanhMucKhoahoc"));
+      // console.log("taiKhoanNguoiTao", formData.get("taiKhoanNguoiTao"));
+      // console.log("ngayTao", formData.get("ngayTao"));
+
       await dispatch(updateCourseAdminAction(formData, idSearching));
       setModalEditing(false);
     },
